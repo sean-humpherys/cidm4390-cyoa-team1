@@ -12,4 +12,9 @@
     <Compile Remove="CYOA.Tests/**/*.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+  <None Update="MessageFiles/*.txt"
+        CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+
 </Project>
