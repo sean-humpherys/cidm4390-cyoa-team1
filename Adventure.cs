@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using CYOA;
 using cidm4390_cyoa_team1;
 
@@ -35,12 +34,11 @@ public class Adventure
 
                 case "s":
                     Console.WriteLine(_messages.GetMessage(8));
-                    ShowEnding(_messages.GetMessage(41));
                     finished = true;
                     break;
 
                 case "e":
-                    ShowEnding("You leave the adventure. The End.");
+                    Console.WriteLine(_messages.GetMessage(4));
                     finished = true;
                     break;
 
@@ -59,10 +57,17 @@ public class Adventure
         Console.WriteLine(_messages.GetMessage(9));
 
         ConsoleColor originalColor = Console.ForegroundColor;
-
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(_messages.GetMessage(10));
-        Console.ForegroundColor = originalColor;
+        try
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(
+                _messages.FormatMessage(
+                    10, "dragonName", dragon.name));
+        }
+        finally
+        {
+            Console.ForegroundColor = originalColor;
+        }
 
         Console.WriteLine(_messages.GetMessage(11));
         Console.WriteLine(dragon.DisplayStats());
@@ -77,39 +82,49 @@ public class Adventure
             switch (choice)
             {
                 case "r":
-                    ShowEnding(_messages.GetMessage(41));
+                    Console.WriteLine(_messages.GetMessage(26));
+                    Console.WriteLine(_messages.GetMessage(41));
                     return true;
 
                 case "a":
                     if (Fight(player, dragon))
-                    {
                         return true;
-                    }
-
                     break;
 
                 default:
                     Console.WriteLine(
-                        "Invalid choice. Enter 'r' or 'a'.");
+                        _messages.GetMessage(25));
                     break;
             }
         }
     }
+
     private bool Fight(Player player, Dragon dragon)
     {
-        Console.WriteLine(_messages.GetMessage(20));
+        Console.WriteLine(
+            _messages.FormatMessage(
+                20,
+                new System.Collections.Generic.Dictionary<string, string>
+                {
+                    ["occupation"] = player.occupation.ToString(),
+                    ["weapon"] = player.weapon.type
+                }));
 
         int attackRoll = _die.Roll(20);
 
         if (attackRoll <= player.strength)
         {
-            Console.WriteLine(_messages.GetMessage(21));
+            Console.WriteLine(
+                _messages.FormatMessage(
+                    21, "dragonName", dragon.name));
 
             int defenseRoll = _die.Roll(20);
 
             if (defenseRoll <= dragon.agility)
             {
-                Console.WriteLine(_messages.GetMessage(22));
+                Console.WriteLine(
+                    _messages.FormatMessage(
+                        22, "dragonName", dragon.name));
                 Console.WriteLine(dragon.MissedMeTaunt());
             }
             else
@@ -117,18 +132,29 @@ public class Adventure
                 int damage = _die.Roll(player.weapon.maxDamage);
                 dragon.health -= damage;
 
-                Console.WriteLine(_messages.GetMessage(23));
+                Console.WriteLine(
+                    _messages.FormatMessage(
+                        23,
+                        new System.Collections.Generic.Dictionary<string, string>
+                        {
+                            ["damage"] = damage.ToString(),
+                            ["healthPoints"] =
+                                Math.Max(0, dragon.health).ToString()
+                        }));
 
                 if (dragon.health <= 0)
                 {
-                    ShowEnding(_messages.GetMessage(24));
+                    Console.WriteLine(_messages.GetMessage(24));
+                    Console.WriteLine(_messages.GetMessage(42));
                     return true;
                 }
             }
         }
         else
         {
-            Console.WriteLine(_messages.GetMessage(35));
+            Console.WriteLine(
+                _messages.FormatMessage(
+                    35, "dragonName", dragon.name));
             Console.WriteLine(player.MissedMeTaunt());
         }
 
@@ -138,25 +164,36 @@ public class Adventure
 
             if (dragonAttackRoll <= dragon.strength)
             {
-                Console.WriteLine(_messages.GetMessage(36));
+                Console.WriteLine(
+                    _messages.FormatMessage(
+                        36, "dragonName", dragon.name));
 
                 int defenseRoll = _die.Roll(20);
 
                 if (defenseRoll <= player.agility)
                 {
                     Console.WriteLine(_messages.GetMessage(38));
-                    Console.WriteLine(player.MissedMeTaunt());
+                    Console.WriteLine(player.WasHitTaunt());
                 }
                 else
                 {
                     int damage = _die.Roll(dragon.weapon.maxDamage);
                     player.health -= damage;
 
-                    Console.WriteLine(_messages.GetMessage(39));
+                    Console.WriteLine(
+                        _messages.FormatMessage(
+                            39,
+                            new System.Collections.Generic.Dictionary<string, string>
+                            {
+                                ["damage"] = damage.ToString(),
+                                ["healthPoints"] =
+                                    Math.Max(0, player.health).ToString()
+                            }));
 
                     if (player.health <= 0)
                     {
-                        ShowEnding(_messages.GetMessage(40));
+                        Console.WriteLine(_messages.GetMessage(40));
+                        Console.WriteLine(_messages.GetMessage(43));
                         return true;
                     }
                 }
@@ -169,10 +206,5 @@ public class Adventure
         }
 
         return false;
-    }
-
-    private static void ShowEnding(string ending)
-    {
-        Console.WriteLine(ending);
     }
 }
