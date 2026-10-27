@@ -177,7 +177,7 @@ public class Game
                 race = Race.Dwarf;
                 break;
             
-            case "halfing":
+            case "halfling":
             case "mediano":
             case "halfelin":
                 race = Race.Halfling;
