@@ -27,6 +27,13 @@ public class CharacterCreationTests
             messages.LanguageDictionary[id.ToString()] = $"Label {id}";
         }
 
+        // Add character creation validation messages.
+        messages.LanguageDictionary["52"] = "Invalid race. Please try again.";
+        messages.LanguageDictionary["53"] = "Character name cannot be empty.";
+        messages.LanguageDictionary["54"] = "Invalid occupation. Please try again.";
+        messages.LanguageDictionary["55"] = "Please type 'roll' to continue.";
+        messages.LanguageDictionary["56"] = "Invalid choice. Please enter 1 or 2.";
+        
         return messages;
     }
 

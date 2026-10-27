@@ -55,7 +55,7 @@ public class CharacterCreation
                 return race;
             }
 
-            Console.WriteLine("Invalid race. Please try again.");
+            Console.WriteLine(_messages.GetMessage(52));
         }
     }
 
