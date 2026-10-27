@@ -15,6 +15,8 @@ public class Game
 
         Console.WriteLine(_messages.GetMessage(5));
 
+        SelectLanguage();
+
         bool gameRunning = true;
 
         while (gameRunning)
@@ -43,6 +45,45 @@ public class Game
         }
     }
 
+    private void SelectLanguage()
+    {
+        while (true)
+        {
+            Console.WriteLine(
+                "Which language do you prefer? " +
+                "English (E), Spanish (S), or French (F)?");
+
+            string? choice = Console.ReadLine()?.Trim()
+                .ToLowerInvariant();
+
+            string? fileName = choice switch
+            {
+                "e" => "English.json",
+                "s" => "Spanish.json",
+                "f" => "French.json",
+                _ => null
+            };
+
+            if (fileName == null)
+            {
+                Console.WriteLine(
+                    "Invalid choice. Please enter E, S, or F.");
+                continue;
+            }
+
+            string? filePath = FindMessageFile(fileName);
+
+            if (filePath == null)
+            {
+                throw new FileNotFoundException(
+                    $"Could not find MessageFiles/{fileName}.");
+            }
+
+            _messages.ReadDictionary(filePath);
+
+            return;
+        }
+    }
     public void EndGame()
     {
         Console.WriteLine(_messages.GetMessage(4));
@@ -50,12 +91,12 @@ public class Game
 
     private void LoadDefaultMessages()
     {
-        string? filePath = FindMessageFile("English.txt");
+        string? filePath = FindMessageFile("English.json");
 
         if (filePath == null)
         {
             throw new FileNotFoundException(
-                "Could not find MessageFiles/English.txt. " +
+                "Could not find MessageFiles/English.json. " +
                 "Check that the MessageFiles folder is available.");
         }
 
@@ -113,16 +154,70 @@ public class Game
                     "Character information cannot be empty.");
                 return;
             }
+        Race race;
+        Occupation occupation;
 
-        if (!Enum.TryParse<Race>(
-                raceInput, true, out Race race) ||
-            !Enum.TryParse<Occupation>(
-                occupationInput, true, out Occupation occupation))
-            {
-                Console.WriteLine(
-                    "Invalid race or occupation. Please try again.");
+        switch (raceInput.ToLowerInvariant())
+        {
+            case "human":
+            case "humano":
+            case "humain":
+                race = Race.Human;
+                break;
+            
+            case "elf":
+            case "elfo":
+            case "elfe":
+                race = Race.Elf;
+                break;
+            
+            case "dwarf":
+            case "enano":
+            case "nain":
+                race = Race.Dwarf;
+                break;
+            
+            case "halfing":
+            case "mediano":
+            case "halfelin":
+                race = Race.Halfling;
+                break;
+            
+            default:
+                Console.WriteLine("Invalid Race. Please try again.");
                 return;
-            }
+
+        }
+
+        switch (occupationInput.ToLowerInvariant())
+        {
+            case "fighter":
+            case "guerrero":
+            case "Guerrier":
+                occupation = Occupation.Fighter;
+                break;
+
+            case "wizard":
+            case "mago":
+            case "magicien":
+                occupation = Occupation.Magician;
+                break;
+
+            case "thief":
+            case "ladrón":
+            case "voleur":
+                occupation = Occupation.Thief;
+                break;
+
+            case "archer":
+            case "arquero":
+                occupation = Occupation.Archer;
+                break;
+
+            default:
+                Console.WriteLine("Invalid occupation. Please try again.");
+            return;
+        }
 
         Player player = new Player(name, race, occupation);
 
