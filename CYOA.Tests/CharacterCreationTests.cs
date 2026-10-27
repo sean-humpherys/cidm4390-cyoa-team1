@@ -370,4 +370,164 @@ public class CharacterCreationTests
             Console.SetOut(originalOutput);
         }
     }
+
+    
+    // Checks that an Elf receives the correct strength, agility, and health bonuses.
+    [TestMethod]
+    public void CreateCharacter_Elf_CalculatesExactStats()
+    {
+        // Predetermined rolls: strength 10 + 3, agility 12 + 4, health 15 + 3.
+        int[] rolls = { 10, 3, 12, 4, 15 };
+        int index = 0;
+
+        int Roll(int sides)
+        {
+            return rolls[index++];
+        }
+
+        var creation = new CharacterCreation(CreateMessages(), Roll);
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Elf\nLuna\nArcher\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(13, player.strength);
+            Assert.AreEqual(16, player.agility);
+            Assert.AreEqual(18, player.health);
+            Assert.AreEqual(5, index);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    
+    // Checks that a Human gets a strength bonus, no agility bonus, and a health bonus.
+    [TestMethod]
+    public void CreateCharacter_Human_CalculatesExactStats()
+    {
+        // Strength: 10 + 3 = 13
+        // Agility: 12
+        // Health: 15 + 3 = 18
+        int[] rolls = { 10, 3, 12, 15 };
+        int index = 0;
+
+        int Roll(int sides)
+        {
+            return rolls[index++];
+        }
+
+        var creation = new CharacterCreation(CreateMessages(), Roll);
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Human\nAlex\nFighter\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(13, player.strength);
+            Assert.AreEqual(12, player.agility);
+            Assert.AreEqual(18, player.health);
+            Assert.AreEqual(4, index);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that a Dwarf gets a strength bonus, no agility bonus, and a health bonus.
+    [TestMethod]
+    public void CreateCharacter_Dwarf_CalculatesExactStats()
+    {
+        // Strength: 8 + 4 = 12
+        // Agility: 11
+        // Health: 14 + 4 = 18
+        int[] rolls = { 8, 4, 11, 14 };
+        int index = 0;
+
+        int Roll(int sides)
+        {
+            return rolls[index++];
+        }
+
+        var creation = new CharacterCreation(CreateMessages(), Roll);
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Dwarf\nThorin\nFighter\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(12, player.strength);
+            Assert.AreEqual(11, player.agility);
+            Assert.AreEqual(18, player.health);
+            Assert.AreEqual(4, index);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that a Halfling loses strength, gains agility, and has no health bonus.
+    [TestMethod]
+    public void CreateCharacter_Halfling_CalculatesExactStats()
+    {
+        // Strength: 10 - 3 = 7
+        // Agility: 12 + 4 = 16
+        // Health: 15
+        int[] rolls = { 10, 3, 12, 4, 15 };
+        int index = 0;
+
+        int Roll(int sides)
+        {
+            return rolls[index++];
+        }
+
+        var creation = new CharacterCreation(CreateMessages(), Roll);
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Halfling\nPip\nThief\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(7, player.strength);
+            Assert.AreEqual(16, player.agility);
+            Assert.AreEqual(15, player.health);
+            Assert.AreEqual(5, index);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
 }

@@ -7,12 +7,20 @@ namespace cidm4390_cyoa_team1;
 public class CharacterCreation
 {
     private readonly Messages _messages;
-    private readonly Die _die;
+    private readonly Func<int, int> _roll;
 
+    
+    // Uses the existing Die class for normal gameplay.
     public CharacterCreation(Messages messages, Die die)
+        : this(messages, die.Roll)
+    {
+    }
+
+    // Allows predetermined dice rolls for testing.
+    public CharacterCreation(Messages messages, Func<int, int> roll)
     {
         _messages = messages;
-        _die = die;
+        _roll = roll;
     }
 
     public Player CreateCharacter()
@@ -116,7 +124,7 @@ public class CharacterCreation
             if (string.Equals(
                 input, "roll", StringComparison.OrdinalIgnoreCase))
             {
-                return _die.Roll(sides);
+                return _roll(sides);
             }
 
             Console.WriteLine("Please type 'roll' to continue.");
@@ -126,7 +134,7 @@ public class CharacterCreation
     private int RollStrength(Player player)
     {
         int baseStrength = WaitForRoll(16, 20);
-        int modifier = _die.Roll(4);
+        int modifier = _roll(4);
 
         if (player.race == Race.Halfling)
         {
@@ -145,7 +153,7 @@ public class CharacterCreation
         if (player.race == Race.Elf ||
             player.race == Race.Halfling)
         {
-            baseAgility += _die.Roll(4);
+            baseAgility += _roll(4);
         }
 
         player.agility = baseAgility;
