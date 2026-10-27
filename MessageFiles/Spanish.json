@@ -66,5 +66,13 @@
   "48": "¡Fallaste, aliento de mosquito!",
   "49": "¿Eso es todo lo que tienes? ¡He visto gatitos con más fuego en sus patas!",
   "50": "¡Esfuérzate más, {race}! ¡Me estás haciendo bostezar!",
-  "51": "¡Quizás si entrecerraras más los ojos, lograrías acertar algo!"
+  "51": "¡Quizás si entrecerraras más los ojos, lograrías acertar algo!",
+
+  
+  "_SECTION_10": "VALIDACIÓN DE CREACIÓN DEL PERSONAJE",
+  "52": "Raza no válida. Inténtalo de nuevo.",
+  "53": "El nombre del personaje no puede estar vacío.",
+  "54": "Ocupación no válida. Inténtalo de nuevo.",
+  "55": "Escribe 'roll' para continuar.",
+  "56": "Opción no válida. Escribe 1 o 2."
 }

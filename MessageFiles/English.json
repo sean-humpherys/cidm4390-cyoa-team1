@@ -66,5 +66,12 @@
   "48": "Missed me, breath of a gnat!",
   "49": "Is that all you've got? I've seen kittens with more fire in their paws!",
   "50": "Try harder, {race}! You're making me yawn!",
-  "51": "Maybe if you squinted harder, you'd actually hit something!"
+  "51": "Maybe if you squinted harder, you'd actually hit something!",
+
+  "_SECTION_10": "CHARACTER CREATION VALIDATION",
+  "52": "Invalid race. Please try again.",
+  "53": "Character name cannot be empty.",
+  "54": "Invalid occupation. Please try again.",
+  "55": "Please type 'roll' to continue.",
+  "56": "Invalid choice. Please enter 1 or 2."
 }
