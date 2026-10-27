@@ -28,9 +28,21 @@ public class Game
             switch (choice)
             {
                 case "1":
-                    CreatePlayer();
+                {
+                    
+                    Die die = new Die();
+                    CharacterCreation characterCreation =
+                        new CharacterCreation(_messages, die);
+
+                    Player player = characterCreation.CreateCharacter();
+
+                    
+                    Adventure adventure = new Adventure(_messages);
+                    adventure.StartAdventure(player);
+
                     gameRunning = false;
                     break;
+                }
 
                 case "2":
                     EndGame();
@@ -38,8 +50,7 @@ public class Game
                     break;
 
                 default:
-                    Console.WriteLine(
-                        "Invalid choice. Please enter 1 or 2.");
+                    Console.WriteLine("Invalid choice. Please enter 1 or 2.");
                     break;
             }
         }
