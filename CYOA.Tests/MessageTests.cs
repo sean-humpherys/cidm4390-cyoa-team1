@@ -145,4 +145,16 @@ public class MessagesTests
         messages.ReadDictionary(GetLanguagePath("English"));
         Assert.AreEqual(Language.English, messages.CurrentLanguage);
     }
+
+    
+    [TestMethod] // Missing Message Test
+    public void GetMessage_MissingKey_ThrowsException()
+    {
+        Messages messages = new Messages();
+
+        messages.ReadDictionary(GetLanguagePath("English"));
+
+        Assert.ThrowsExactly<KeyNotFoundException>(
+            () => messages.GetMessage(999));
+    }
 }
