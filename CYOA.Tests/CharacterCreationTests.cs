@@ -117,14 +117,14 @@ public class CharacterCreationTests
 
             string output = writer.ToString();
 
-            Assert.IsTrue(output.Contains("Label 27: Robin"));
-            Assert.IsTrue(output.Contains("Label 28: Halfling"));
-            Assert.IsTrue(output.Contains("Label 29: Thief"));
-            Assert.IsTrue(output.Contains("Label 30: 9"));
-            Assert.IsTrue(output.Contains("Label 31: 15"));
-            Assert.IsTrue(output.Contains("Label 32: 12"));
-            Assert.IsTrue(output.Contains("Label 33: dagger"));
-            Assert.IsTrue(output.Contains("Label 34: 6"));
+            Assert.Contains("Label 27: Robin", output);
+            Assert.Contains("Label 28: Halfling", output);
+            Assert.Contains("Label 29: Thief", output);
+            Assert.Contains("Label 30: 9", output);
+            Assert.Contains("Label 31: 15", output);
+            Assert.Contains("Label 32: 12", output);
+            Assert.Contains("Label 33: dagger", output);
+            Assert.Contains("Label 34: 6", output);
         }
         finally
         {
@@ -154,7 +154,212 @@ public class CharacterCreationTests
             string output = writer.ToString();
 
             Assert.AreEqual("Gimli", player.name);
-            Assert.IsTrue(output.Contains("Label 27: Gimli"));
+            Assert.Contains("Label 27: Gimli", output);
+
+            int menuCount = output.Split("Prompt 19").Length - 1;
+            Assert.AreEqual(2, menuCount);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    
+    // Checks that a Halfling receives the correct weapon and valid stats.
+    [TestMethod]
+    public void CreateCharacter_Halfling_HasValidStats()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Halfling\nPip\nThief\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.IsTrue(player.strength >= -3 && player.strength <= 19);
+            Assert.IsTrue(player.agility >= 2 && player.agility <= 24);
+            Assert.IsTrue(player.health >= 1 && player.health <= 20);
+            Assert.AreEqual("dagger", player.weapon.type);
+            Assert.AreEqual(6, player.weapon.maxDamage);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that a Dwarf receives the correct weapon and valid stats.
+    [TestMethod]
+    public void CreateCharacter_Dwarf_HasValidStats()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Dwarf\nThorin\nFighter\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.IsTrue(player.strength >= 2 && player.strength <= 24);
+            Assert.IsTrue(player.agility >= 1 && player.agility <= 20);
+            Assert.IsTrue(player.health >= 2 && player.health <= 24);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that a Magician receives a lightning bolt spell.
+    [TestMethod]
+    public void CreateCharacter_Magician_AssignsCorrectWeapon()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Human\nMerlin\nMagician\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual("lightning bolt spell", player.weapon.type);
+            Assert.AreEqual(12, player.weapon.maxDamage);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that an invalid race requires another selection.
+    [TestMethod]
+    public void CreateCharacter_InvalidRace_AsksAgain()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Dragon\nElf\nLuna\nArcher\nroll\nroll\nroll\n2\n"));
+
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(Race.Elf, player.race);
+            Assert.Contains("Invalid race", writer.ToString());
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that an invalid occupation requires another selection.
+    [TestMethod]
+    public void CreateCharacter_InvalidOccupation_AsksAgain()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Human\nAlex\nWizard\nFighter\nroll\nroll\nroll\n2\n"));
+
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(Occupation.Fighter, player.occupation);
+            Assert.Contains("Invalid occupation", writer.ToString());
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that typing something other than roll repeats the prompt.
+    [TestMethod]
+    public void CreateCharacter_InvalidRoll_AsksAgain()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Human\nAlex\nFighter\nready\nroll\nroll\nroll\n2\n"));
+
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            creation.CreateCharacter();
+
+            Assert.Contains("Please type 'roll' to continue.", writer.ToString());
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that an invalid menu choice repeats the menu.
+    [TestMethod]
+    public void CreateCharacter_InvalidMenuChoice_AsksAgain()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Human\nAlex\nFighter\nroll\nroll\nroll\n9\n2\n"));
+
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            creation.CreateCharacter();
+
+            string output = writer.ToString();
+
+            Assert.Contains("Invalid choice", output);
 
             int menuCount = output.Split("Prompt 19").Length - 1;
             Assert.AreEqual(2, menuCount);
