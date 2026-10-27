@@ -1,11 +1,12 @@
+
 using System;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CYOA;
 
-
 namespace CYOA.Tests;
 
+[DoNotParallelize]
 [TestClass]
 public class GameTests
 {

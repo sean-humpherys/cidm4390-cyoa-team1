@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-  <None Update="MessageFiles/*.txt"
+  <None Update="MessageFiles/*.json"
         CopyToOutputDirectory="PreserveNewest" />
-</ItemGroup>
+  </ItemGroup>
 
 </Project>

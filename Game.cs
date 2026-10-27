@@ -50,12 +50,12 @@ public class Game
 
     private void LoadDefaultMessages()
     {
-        string? filePath = FindMessageFile("English.txt");
+        string? filePath = FindMessageFile("English.json");
 
         if (filePath == null)
         {
             throw new FileNotFoundException(
-                "Could not find MessageFiles/English.txt. " +
+                "Could not find MessageFiles/English.json. " +
                 "Check that the MessageFiles folder is available.");
         }
 

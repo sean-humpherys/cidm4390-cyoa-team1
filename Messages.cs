@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace CYOA;
 
 public class Messages
@@ -16,36 +18,29 @@ public void ReadDictionary(string languageFilePath)
     {
         string fileName = Path.GetFileNameWithoutExtension(languageFilePath);
 
-        if (Enum.TryParse<Language>(fileName, true, out Language language))
-        {
-            CurrentLanguage = language;
-        }
-        
-        else
+        if (!Enum.TryParse<Language>(fileName, true, out Language language)
+            || !Enum.IsDefined(typeof(Language), language))
         {
             throw new ArgumentException($"Unsupported language: {fileName}");
         }
 
-        LanguageDictionary.Clear();
+        string json = File.ReadAllText(languageFilePath);
 
-        foreach (string line in File.ReadAllLines(languageFilePath))
+        Dictionary<string, string> messages =
+            JsonSerializer.Deserialize<Dictionary<string, string>>(json)
+            ?? throw new FormatException("Language file is empty or invalid.");
+
+        // Remove section headings so only numbered messages remain.
+        foreach (string key in messages.Keys.ToList())
         {
-            if (string.IsNullOrWhiteSpace(line) ||
-                line.TrimStart().StartsWith("#"))
+            if (key.StartsWith("_SECTION_"))
             {
-                continue;
+                messages.Remove(key);
             }
-
-            string[] parts = line.Split('=', 2);
-
-            if (parts.Length != 2 ||
-                !int.TryParse(parts[0].Trim(), out int messageNumber))
-            {
-                throw new FormatException($"Invalid message: {line}");
-            }
-
-            LanguageDictionary[messageNumber.ToString()] = parts[1].Trim();
         }
+
+        LanguageDictionary = messages;
+        CurrentLanguage = language;
     }
 
 public string FormatMessage(int whichMessage, string placeholder, string value)
