@@ -20,7 +20,7 @@ public class GameTests
 
         try
         {
-            Console.SetIn(new StringReader("2"));
+            Console.SetIn(new StringReader("e\n2\n"));
             Console.SetOut(output);
 
             Game game = new Game();
@@ -53,7 +53,7 @@ public class GameTests
 
         try
         {
-            Console.SetIn(new StringReader("x\n2\n"));
+            Console.SetIn(new StringReader("e\nx\n2\n"));
             Console.SetOut(output);
 
             Game game = new Game();
