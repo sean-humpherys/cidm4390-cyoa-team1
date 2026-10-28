@@ -155,7 +155,7 @@ public class Adventure
             Console.WriteLine(
                 _messages.FormatMessage(
                     35, "dragonName", dragon.name));
-            Console.WriteLine(player.MissedMeTaunt());
+            Console.WriteLine(_messages.GetMessage(48));
         }
 
         if (dragon.health > 0)
@@ -173,7 +173,6 @@ public class Adventure
                 if (defenseRoll <= player.agility)
                 {
                     Console.WriteLine(_messages.GetMessage(38));
-                    Console.WriteLine(player.WasHitTaunt());
                 }
                 else
                 {
@@ -201,7 +200,7 @@ public class Adventure
             else
             {
                 Console.WriteLine(_messages.GetMessage(37));
-                Console.WriteLine(dragon.MissedMeTaunt());
+                Console.WriteLine(_messages.GetMessage(51));
             }
         }
 
