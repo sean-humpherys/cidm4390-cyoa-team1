@@ -300,7 +300,7 @@ public class CharacterCreationTests
         try
         {
             Console.SetIn(new StringReader(
-                "Human\nAlex\nWizard\nFighter\nroll\nroll\nroll\n2\n"));
+                "Human\nAlex\nPirate\nFighter\nroll\nroll\nroll\n2\n"));
 
             using var writer = new StringWriter();
             Console.SetOut(writer);
@@ -530,6 +530,60 @@ public class CharacterCreationTests
             Assert.AreEqual(16, player.agility);
             Assert.AreEqual(15, player.health);
             Assert.AreEqual(5, index);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that Spanish race and occupation names are accepted.
+    [TestMethod]
+    public void CreateCharacter_SpanishInput_Works()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Humano\nAlex\nGuerrero\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(Race.Human, player.race);
+            Assert.AreEqual(Occupation.Fighter, player.occupation);
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    // Checks that French race and occupation names are accepted.
+    [TestMethod]
+    public void CreateCharacter_FrenchInput_Works()
+    {
+        var creation = new CharacterCreation(CreateMessages(), new Die());
+
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        try
+        {
+            Console.SetIn(new StringReader(
+                "Nain\nPierre\nGuerrier\nroll\nroll\nroll\n2\n"));
+            Console.SetOut(new StringWriter());
+
+            Player player = creation.CreateCharacter();
+
+            Assert.AreEqual(Race.Dwarf, player.race);
+            Assert.AreEqual(Occupation.Fighter, player.occupation);
         }
         finally
         {

@@ -47,15 +47,24 @@ public class CharacterCreation
         while (true)
         {
             Console.WriteLine(_messages.GetMessage(13));
-            string? input = Console.ReadLine()?.Trim();
+            string? input = Console.ReadLine()?.Trim().ToLowerInvariant();
 
-            if (Enum.TryParse(input, true, out Race race) &&
-                Enum.IsDefined(race))
+            Race? race = input switch
             {
-                return race;
+                "human" or "humano" or "humain" => Race.Human,
+                "elf" or "elfo" or "elfe" => Race.Elf,
+                "dwarf" or "enano" or "nain" => Race.Dwarf,
+                "halfling" or "halfing" or "mediano" or "halfelin"
+                => Race.Halfling,
+                _ => null
+            };
+        if (race.HasValue)
+            {
+                return race.Value;
             }
 
             Console.WriteLine(_messages.GetMessage(52));
+
         }
     }
 
@@ -80,15 +89,31 @@ public class CharacterCreation
         while (true)
         {
             Console.WriteLine(_messages.GetMessage(15));
-            string? input = Console.ReadLine()?.Trim();
+            string? input = Console.ReadLine()?.Trim().ToLowerInvariant();
 
-            if (Enum.TryParse(input, true, out Occupation occupation) &&
-                Enum.IsDefined(occupation))
+            Occupation? occupation = input switch
             {
-                return occupation;
+                "fighter" or "guerrero" or "guerrier"
+                    => Occupation.Fighter,
+
+                "magician" or "wizard" or "mago" or "magicien"
+                    => Occupation.Magician,
+
+                "thief" or "ladrón" or "ladron" or "voleur"
+                    => Occupation.Thief,
+
+                "archer" or "arquero"
+                    => Occupation.Archer,
+
+                _ => null
+            };
+
+            if (occupation.HasValue)
+            {
+                return occupation.Value;
             }
 
-            Console.WriteLine("Invalid occupation. Please try again.");
+            Console.WriteLine(_messages.GetMessage(54));
         }
     }
 
