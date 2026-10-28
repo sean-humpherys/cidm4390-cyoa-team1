@@ -38,7 +38,7 @@ namespace cidm4390_cyoa_team1
             string filePath = Path.Combine(
                 AppContext.BaseDirectory,
                 "MessageFiles",
-                "English.txt"
+                "English.json"
             );
 
             Messages messages = new Messages();
