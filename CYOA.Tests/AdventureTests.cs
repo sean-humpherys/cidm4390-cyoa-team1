@@ -25,6 +25,10 @@ public class AdventureTests
                 ["10"] = "The dragon says: I am {dragonName}. Leave or perish!",
                 ["11"] = "Your magic ring gives you the stats on the dragon.",
                 ["12"] = "Enter r to retreat or a to attack.",
+                ["20"] = "{occupation} attacks using {weapon}.",
+                ["35"] = "Your attack misses {dragonName}.",
+                ["36"] = "{dragonName} attacks!",
+                ["37"] = "The dragon's attack misses.",
                 ["25"] = "Enter r for retreat and a for attack.",
                 ["26"] = "You hastily retreat licking your wounds.",
                 ["41"] = "You quickly retreat. You come home poor but alive. The End."
@@ -128,6 +132,47 @@ public class AdventureTests
             StringAssert.Contains(
                 result,
                 "The End.");
+        }
+        finally
+        {
+            Console.SetIn(originalInput);
+            Console.SetOut(originalOutput);
+        }
+    }
+
+    [TestMethod]
+    public void StartAdventure_NorthThenAttack_UsesCombatClass()
+    {
+        TextReader originalInput = Console.In;
+        TextWriter originalOutput = Console.Out;
+
+        using StringWriter output = new StringWriter();
+
+        try
+        {
+            Console.SetIn(new StringReader("n\na\nr\n"));
+            Console.SetOut(output);
+
+            Player player = CreatePlayer();
+            player.strength = 0;
+            player.agility = 20;
+
+            Adventure adventure = new Adventure(CreateMessages());
+            adventure.StartAdventure(player);
+
+            string result = output.ToString();
+
+            StringAssert.Contains(
+                result,
+                "You take the North path.");
+
+            StringAssert.Contains(
+                result,
+                player.weapon.asciiArt);
+
+            StringAssert.Contains(
+                result,
+                "You hastily retreat");
         }
         finally
         {

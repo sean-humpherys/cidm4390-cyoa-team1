@@ -7,12 +7,10 @@ namespace CYOA;
 public class Adventure
 {
     private readonly Messages _messages;
-    private readonly Die _die;
 
     public Adventure(Messages messages)
     {
         _messages = messages;
-        _die = new Die();
     }
 
     public void StartAdventure(Player player)
@@ -87,7 +85,8 @@ public class Adventure
                     return true;
 
                 case "a":
-                    if (Fight(player, dragon))
+                    Combat combat = new Combat(player, dragon, _messages);
+                    if (Fight(player, dragon, combat))
                         return true;
                     break;
 
@@ -99,111 +98,24 @@ public class Adventure
         }
     }
 
-    private bool Fight(Player player, Dragon dragon)
+    private bool Fight(Player player, Dragon dragon, Combat combat)
     {
-        Console.WriteLine(
-            _messages.FormatMessage(
-                20,
-                new System.Collections.Generic.Dictionary<string, string>
-                {
-                    ["occupation"] = player.occupation.ToString(),
-                    ["weapon"] = player.weapon.type
-                }));
+        combat.PlayerAttacksDragonSequence();
 
-        int attackRoll = _die.Roll(20);
-
-        if (attackRoll <= player.strength)
+        if (dragon.health <= 0)
         {
-            Console.WriteLine(
-                _messages.FormatMessage(
-                    21, "dragonName", dragon.name));
-
-            int defenseRoll = _die.Roll(20);
-
-            if (defenseRoll <= dragon.agility)
-            {
-                Console.WriteLine(
-                    _messages.FormatMessage(
-                        22, "dragonName", dragon.name));
-                Console.WriteLine(dragon.MissedMeTaunt());
-            }
-            else
-            {
-                int damage = _die.Roll(player.weapon.maxDamage);
-                dragon.health -= damage;
-
-                Console.WriteLine(
-                    _messages.FormatMessage(
-                        23,
-                        new System.Collections.Generic.Dictionary<string, string>
-                        {
-                            ["damage"] = damage.ToString(),
-                            ["healthPoints"] =
-                                Math.Max(0, dragon.health).ToString()
-                        }));
-
-                if (dragon.health <= 0)
-                {
-                    Console.WriteLine(_messages.GetMessage(24));
-                    Console.WriteLine(_messages.GetMessage(42));
-                    return true;
-                }
-            }
-        }
-        else
-        {
-            Console.WriteLine(
-                _messages.FormatMessage(
-                    35, "dragonName", dragon.name));
-            Console.WriteLine(_messages.GetMessage(48));
+            Console.WriteLine(_messages.GetMessage(42));
+            return true;
         }
 
-        if (dragon.health > 0)
+        combat.DragonAttacksPlayerSequence();
+
+        if (player.health <= 0)
         {
-            int dragonAttackRoll = _die.Roll(20);
-
-            if (dragonAttackRoll <= dragon.strength)
-            {
-                Console.WriteLine(
-                    _messages.FormatMessage(
-                        36, "dragonName", dragon.name));
-
-                int defenseRoll = _die.Roll(20);
-
-                if (defenseRoll <= player.agility)
-                {
-                    Console.WriteLine(_messages.GetMessage(38));
-                }
-                else
-                {
-                    int damage = _die.Roll(dragon.weapon.maxDamage);
-                    player.health -= damage;
-
-                    Console.WriteLine(
-                        _messages.FormatMessage(
-                            39,
-                            new System.Collections.Generic.Dictionary<string, string>
-                            {
-                                ["damage"] = damage.ToString(),
-                                ["healthPoints"] =
-                                    Math.Max(0, player.health).ToString()
-                            }));
-
-                    if (player.health <= 0)
-                    {
-                        Console.WriteLine(_messages.GetMessage(40));
-                        Console.WriteLine(_messages.GetMessage(43));
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine(_messages.GetMessage(37));
-                Console.WriteLine(_messages.GetMessage(51));
-            }
+            Console.WriteLine(_messages.GetMessage(43));
+            return true;
         }
-
         return false;
+       
     }
 }
