@@ -146,8 +146,10 @@ public class CharacterCreation
 
             string? input = Console.ReadLine()?.Trim();
 
-            if (string.Equals(
-                input, "roll", StringComparison.OrdinalIgnoreCase))
+            if (input is not null &&
+                (input.Equals("roll", StringComparison.OrdinalIgnoreCase) ||
+                 input.Equals("tirar", StringComparison.OrdinalIgnoreCase) ||
+                 input.Equals("lancer", StringComparison.OrdinalIgnoreCase)))
             {
                 return _roll(sides);
             }

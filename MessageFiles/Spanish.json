@@ -19,9 +19,9 @@
   "13": "¿Qué raza quieres que sea tu personaje? ¿Humano, elfo, enano o mediano?",
   "14": "¿Cómo se llama tu personaje?",
   "15": "¿Cuál es la ocupación de tu personaje? ¿Guerrero, mago, ladrón o arquero?",
-  "16": "Ahora vamos a tirar los dados para determinar la fuerza. Escribe 'roll'.",
-  "17": "Ahora vamos a tirar los dados para determinar la agilidad. Escribe 'roll'.",
-  "18": "Ahora vamos a tirar los dados para determinar los puntos de salud. Escribe 'roll'.",
+  "16": "Ahora vamos a tirar los dados para determinar la fuerza. Escribe 'tirar'.",
+  "17": "Ahora vamos a tirar los dados para determinar la agilidad. Escribe 'tirar'.",
+  "18": "Ahora vamos a tirar los dados para determinar los puntos de salud. Escribe 'tirar'.",
   "19": "¿Qué te gustaría hacer ahora? 1. Ver las estadísticas del personaje 2. Continuar la aventura. Escribe 1 o 2.",
 
   "_SECTION_4": "ATTACK ACTIVITY",
@@ -73,7 +73,7 @@
   "52": "Raza no válida. Inténtalo de nuevo.",
   "53": "El nombre del personaje no puede estar vacío.",
   "54": "Ocupación no válida. Inténtalo de nuevo.",
-  "55": "Escribe 'roll' para continuar.",
+  "55": "Escribe 'tirar' para continuar.",
   "56": "Opción no válida. Escribe 1 o 2.",
   "57": "Opción no válida. Escribe 'n', 's' o 'e'."
 }
