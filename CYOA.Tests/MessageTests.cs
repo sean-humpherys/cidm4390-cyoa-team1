@@ -175,11 +175,25 @@ public class MessagesTests
         Messages messages = new Messages();
         messages.ReadDictionary(GetLanguagePath("English"));
 
-        Assert.AreEqual("Invalid race. Please try again.", messages.GetMessage(52));
-        Assert.AreEqual("Character name cannot be empty.", messages.GetMessage(53));
-        Assert.AreEqual("Invalid occupation. Please try again.", messages.GetMessage(54));
-        Assert.AreEqual("Please type 'roll' to continue.", messages.GetMessage(55));
-        Assert.AreEqual("Invalid choice. Please enter 1 or 2.", messages.GetMessage(56));
+        Assert.AreEqual(
+            "Invalid race. Please try again.",
+            messages.GetMessage(52));
+
+        Assert.AreEqual(
+            "Character name cannot be empty.",
+            messages.GetMessage(53));
+
+        Assert.AreEqual(
+            "Invalid occupation. Please try again.",
+            messages.GetMessage(54));
+
+        Assert.AreEqual(
+            "Please type 'roll' to continue.",
+            messages.GetMessage(55));
+
+        Assert.AreEqual(
+            "Invalid choice. Please enter 1 or 2.",
+            messages.GetMessage(56));
     }
 
     // Verify French character creation prompts, stats, and validation.
@@ -212,7 +226,9 @@ public class MessagesTests
 
         Assert.AreEqual("Nom", messages.GetMessage(27));
         Assert.AreEqual("Force", messages.GetMessage(30));
-        Assert.AreEqual("Race invalide. Veuillez réessayer.", messages.GetMessage(52));
+        Assert.AreEqual(
+            "Race invalide. Veuillez réessayer.",
+            messages.GetMessage(52));
     }
 
     // Verify Spanish character creation prompts, stats, and validation.
@@ -245,6 +261,38 @@ public class MessagesTests
 
         Assert.AreEqual("Nombre", messages.GetMessage(27));
         Assert.AreEqual("Fuerza", messages.GetMessage(30));
-        Assert.AreEqual("Raza no válida. Inténtalo de nuevo.", messages.GetMessage(52));
+        Assert.AreEqual(
+            "Raza no válida. Inténtalo de nuevo.",
+            messages.GetMessage(52));
+    }
+
+    // Regression test for Issue #42.
+    // Verify that Message #58 correctly translates the player's
+    // defense taunt and replaces the playerName placeholder.
+    [TestMethod]
+    public void FormatMessage_PlayerDefenseTaunt_IsLocalizedInAllLanguages()
+    {
+        Messages messages = new Messages();
+
+        // English
+        messages.ReadDictionary(GetLanguagePath("English"));
+
+        Assert.AreEqual(
+            "Alex says: You missed me!",
+            messages.FormatMessage(58, "playerName", "Alex"));
+
+        // Spanish
+        messages.ReadDictionary(GetLanguagePath("Spanish"));
+
+        Assert.AreEqual(
+            "¡Alex dice: No lograste golpearme!",
+            messages.FormatMessage(58, "playerName", "Alex"));
+
+        // French
+        messages.ReadDictionary(GetLanguagePath("French"));
+
+        Assert.AreEqual(
+            "Alex dit : Tu m'as raté !",
+            messages.FormatMessage(58, "playerName", "Alex"));
     }
 }
