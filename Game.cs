@@ -50,7 +50,7 @@ public class Game
                     break;
 
                 default:
-                    Console.WriteLine("Invalid choice. Please enter 1 or 2.");
+                    Console.WriteLine(_messages.GetMessage(56));
                     break;
             }
         }

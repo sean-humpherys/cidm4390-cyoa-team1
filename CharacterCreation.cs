@@ -80,7 +80,7 @@ public class CharacterCreation
                 return name;
             }
 
-            Console.WriteLine("Character name cannot be empty.");
+            Console.WriteLine(_messages.GetMessage(53));
         }
     }
 
@@ -146,13 +146,15 @@ public class CharacterCreation
 
             string? input = Console.ReadLine()?.Trim();
 
-            if (string.Equals(
-                input, "roll", StringComparison.OrdinalIgnoreCase))
+            if (input is not null &&
+                (input.Equals("roll", StringComparison.OrdinalIgnoreCase) ||
+                 input.Equals("tirar", StringComparison.OrdinalIgnoreCase) ||
+                 input.Equals("lancer", StringComparison.OrdinalIgnoreCase)))
             {
                 return _roll(sides);
             }
 
-            Console.WriteLine("Please type 'roll' to continue.");
+            Console.WriteLine(_messages.GetMessage(55));
         }
     }
 
@@ -213,11 +215,82 @@ public class CharacterCreation
                     return;
 
                 default:
-                    Console.WriteLine(
-                        "Invalid choice. Please enter 1 or 2.");
+                    Console.WriteLine(_messages.GetMessage(56));
                     break;
             }
         }
+    }
+
+    public string TranslateRace(Race race)
+    {
+        return _messages.CurrentLanguage switch
+        {
+            Language.Spanish => race switch
+            {
+                Race.Human => "Humano",
+                Race.Elf => "Elfo",
+                Race.Dwarf => "Enano",
+                Race.Halfling => "Mediano",
+                _ => race.ToString()
+            },
+            Language.French => race switch
+            {
+                Race.Human => "Humain",
+                Race.Elf => "Elfe",
+                Race.Dwarf => "Nain",
+                Race.Halfling => "Halfelin",
+                _ => race.ToString()
+            },
+            _ => race.ToString()
+        };
+    }
+
+    public string TranslateOccupation(Occupation occupation)
+    {
+        return _messages.CurrentLanguage switch
+        {
+            Language.Spanish => occupation switch
+            {
+                Occupation.Fighter => "Guerrero",
+                Occupation.Magician => "Mago",
+                Occupation.Thief => "Ladrón",
+                Occupation.Archer => "Arquero",
+                _ => occupation.ToString()
+            },
+            Language.French => occupation switch
+            {
+                Occupation.Fighter => "Guerrier",
+                Occupation.Magician => "Magicien",
+                Occupation.Thief => "Voleur",
+                Occupation.Archer => "Archer",
+                _ => occupation.ToString()
+            },
+            _ => occupation.ToString()
+        };
+    }
+
+    public string TranslateWeapon(string weapon)
+    {
+        return _messages.CurrentLanguage switch
+        {
+            Language.Spanish => weapon switch
+            {
+                "long sword" => "espada larga",
+                "lightning bolt spell" => "hechizo de rayo",
+                "dagger" => "daga",
+                "long bow" => "arco largo",
+                _ => weapon
+            },
+            Language.French => weapon switch
+            {
+                "long sword" => "épée longue",
+                "lightning bolt spell" => "sort de foudre",
+                "dagger" => "dague",
+                "long bow" => "arc long",
+                _ => weapon
+            },
+            _ => weapon
+        };
     }
 
     public void DisplayCharacterStats(Player player)
@@ -226,10 +299,10 @@ public class CharacterCreation
             $"{_messages.GetMessage(27)}: {player.name}");
 
         Console.WriteLine(
-            $"{_messages.GetMessage(28)}: {player.race}");
+            $"{_messages.GetMessage(28)}: {TranslateRace(player.race)}");
 
         Console.WriteLine(
-            $"{_messages.GetMessage(29)}: {player.occupation}");
+            $"{_messages.GetMessage(29)}: {TranslateOccupation(player.occupation)}");
 
         Console.WriteLine(
             $"{_messages.GetMessage(30)}: {player.strength}");
@@ -241,7 +314,7 @@ public class CharacterCreation
             $"{_messages.GetMessage(32)}: {player.health}");
 
         Console.WriteLine(
-            $"{_messages.GetMessage(33)}: {player.weapon.type}");
+            $"{_messages.GetMessage(33)}: {TranslateWeapon(player.weapon.type)}");
 
         Console.WriteLine(
             $"{_messages.GetMessage(34)}: {player.weapon.maxDamage}");
