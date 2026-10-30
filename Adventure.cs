@@ -41,8 +41,7 @@ public class Adventure
                     break;
 
                 default:
-                    Console.WriteLine(
-                        "Invalid choice. Enter 'n', 's', or 'e'.");
+                    Console.WriteLine(_messages.GetMessage(57));
                     break;
             }
         }
@@ -80,7 +79,6 @@ public class Adventure
             switch (choice)
             {
                 case "r":
-                    Console.WriteLine(_messages.GetMessage(26));
                     Console.WriteLine(_messages.GetMessage(41));
                     return true;
 

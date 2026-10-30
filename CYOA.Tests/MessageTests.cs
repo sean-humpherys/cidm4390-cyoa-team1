@@ -59,7 +59,7 @@ public class MessagesTests
 
         messages.ReadDictionary(GetLanguagePath("English"));
 
-        Assert.HasCount(56, messages.LanguageDictionary);
+        Assert.HasCount(57, messages.LanguageDictionary);
         Assert.IsFalse(
             messages.LanguageDictionary.ContainsKey("_SECTION_1"));
         Assert.IsFalse(
@@ -113,7 +113,7 @@ public class MessagesTests
         Messages messages = new Messages();
         messages.ReadDictionary(GetLanguagePath("Spanish"));
 
-        Assert.HasCount(56, messages.LanguageDictionary);
+        Assert.HasCount(57, messages.LanguageDictionary);
 
         for (int i = 1; i <= 56; i++)
         {
@@ -130,9 +130,9 @@ public class MessagesTests
         Messages messages = new Messages();
         messages.ReadDictionary(GetLanguagePath("French"));
 
-        Assert.HasCount(56, messages.LanguageDictionary);
+        Assert.HasCount(57, messages.LanguageDictionary);
 
-        for (int i = 1; i <= 56; i++)
+        for (int i = 1; i <= 57; i++)
         {
             Assert.IsTrue(
                 messages.LanguageDictionary.ContainsKey(i.ToString()),
