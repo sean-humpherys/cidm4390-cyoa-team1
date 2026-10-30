@@ -106,8 +106,8 @@ public class Adventure
                 20,
                 new System.Collections.Generic.Dictionary<string, string>
                 {
-                    ["occupation"] = player.occupation.ToString(),
-                    ["weapon"] = player.weapon.type
+                    ["occupation"] = TranslateOccupation(player.occupation),
+                    ["weapon"] = TranslateWeapon(player.weapon.type)
                 }));
 
         int attackRoll = _die.Roll(20);
@@ -205,5 +205,53 @@ public class Adventure
         }
 
         return false;
+    }
+
+    private string TranslateOccupation(Occupation occupation)
+    {
+        return _messages.CurrentLanguage switch
+        {
+            Language.Spanish => occupation switch
+            {
+                Occupation.Fighter => "Guerrero",
+                Occupation.Magician => "Mago",
+                Occupation.Thief => "Ladrón",
+                Occupation.Archer => "Arquero",
+                _ => occupation.ToString()
+            },
+            Language.French => occupation switch
+            {
+                Occupation.Fighter => "Guerrier",
+                Occupation.Magician => "Magicien",
+                Occupation.Thief => "Voleur",
+                Occupation.Archer => "Archer",
+                _ => occupation.ToString()
+            },
+            _ => occupation.ToString()
+        };
+    }
+
+    private string TranslateWeapon(string weapon)
+    {
+        return _messages.CurrentLanguage switch
+        {
+            Language.Spanish => weapon switch
+            {
+                "long sword" => "espada larga",
+                "lightning bolt spell" => "hechizo de rayo",
+                "dagger" => "daga",
+                "long bow" => "arco largo",
+                _ => weapon
+            },
+            Language.French => weapon switch
+            {
+                "long sword" => "épée longue",
+                "lightning bolt spell" => "sort de foudre",
+                "dagger" => "dague",
+                "long bow" => "arc long",
+                _ => weapon
+            },
+            _ => weapon
+        };
     }
 }
