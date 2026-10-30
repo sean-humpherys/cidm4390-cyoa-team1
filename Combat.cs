@@ -51,13 +51,15 @@ namespace cidm4390_cyoa_team1
         {
             Die die = new Die();
 
+            CharacterCreation translator = new CharacterCreation(_messages, die);
+
             // Display the attack introduction in the selected language.
             Console.WriteLine(_messages.FormatMessage(
                 20,
                 new Dictionary<string, string>
                 {
-                    { "occupation", player.occupation.ToString() },
-                    { "weapon", player.weapon.type }
+                    { "occupation", translator.TranslateOccupation(player.occupation)},
+                    { "weapon", translator.TranslateWeapon(player.weapon.type)}
                 }));
 
             Console.WriteLine(player.weapon.asciiArt);
@@ -87,7 +89,7 @@ namespace cidm4390_cyoa_team1
                 int tauntId = die.Roll(4) + 47;
 
                 Console.WriteLine(_messages.FormatMessage(
-                    tauntId, "race", player.race.ToString()));
+                    tauntId, "race", translator.TranslateRace(player.race)));
                 return;
             }
 

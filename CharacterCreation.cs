@@ -221,7 +221,7 @@ public class CharacterCreation
         }
     }
 
-    private string TranslateRace(Race race)
+    public string TranslateRace(Race race)
     {
         return _messages.CurrentLanguage switch
         {
@@ -245,7 +245,7 @@ public class CharacterCreation
         };
     }
 
-    private string TranslateOccupation(Occupation occupation)
+    public string TranslateOccupation(Occupation occupation)
     {
         return _messages.CurrentLanguage switch
         {
@@ -269,7 +269,7 @@ public class CharacterCreation
         };
     }
 
-    private string TranslateWeapon(string weapon)
+    public string TranslateWeapon(string weapon)
     {
         return _messages.CurrentLanguage switch
         {
