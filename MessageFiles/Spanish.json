@@ -74,5 +74,6 @@
   "53": "El nombre del personaje no puede estar vacío.",
   "54": "Ocupación no válida. Inténtalo de nuevo.",
   "55": "Escribe 'roll' para continuar.",
-  "56": "Opción no válida. Escribe 1 o 2."
+  "56": "Opción no válida. Escribe 1 o 2.",
+  "57": "Opción no válida. Escribe 'n', 's' o 'e'."
 }

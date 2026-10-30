@@ -29,9 +29,11 @@ public class AdventureTests
                 ["35"] = "Your attack misses {dragonName}.",
                 ["36"] = "{dragonName} attacks!",
                 ["37"] = "The dragon's attack misses.",
+                ["38"] = "You successfully defended the attack.",
                 ["25"] = "Enter r for retreat and a for attack.",
                 ["26"] = "You hastily retreat licking your wounds.",
-                ["41"] = "You quickly retreat. You come home poor but alive. The End."
+                ["41"] = "You quickly retreat. You come home poor but alive. The End.",
+                ["57"] = "Invalid choice. Enter 'n', 's', or 'e'."
             }
         };
     }
@@ -127,11 +129,15 @@ public class AdventureTests
 
             StringAssert.Contains(
                 result,
-                "You hastily retreat");
+                "You quickly retreat");
 
             StringAssert.Contains(
                 result,
                 "The End.");
+            
+            Assert.DoesNotContain(
+                result.Contains("You hastily retreat"),
+                "Message #26 should not appear when retreating.");
         }
         finally
         {
@@ -172,7 +178,7 @@ public class AdventureTests
 
             StringAssert.Contains(
                 result,
-                "You hastily retreat");
+                "You quickly retreat");
         }
         finally
         {
