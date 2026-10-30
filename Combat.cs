@@ -85,7 +85,7 @@ namespace cidm4390_cyoa_team1
                 Console.WriteLine(_messages.FormatMessage(
                     22, "dragonName", dragon.name));
 
-                // Random dragon defense taunt (48–51).
+                // Random dragon defense taunt (48-51).
                 int tauntId = die.Roll(4) + 47;
 
                 Console.WriteLine(_messages.FormatMessage(
@@ -111,7 +111,7 @@ namespace cidm4390_cyoa_team1
                 return;
             }
 
-            // Random dragon reply after surviving damage (44–47).
+            // Random dragon reply after surviving damage (44-47).
             int replyId = die.Roll(4) + 43;
             Console.WriteLine(_messages.GetMessage(replyId));
         }
@@ -139,8 +139,10 @@ namespace cidm4390_cyoa_team1
             {
                 Console.WriteLine(_messages.GetMessage(38));
 
-                // Existing player defense taunt.
-                Console.WriteLine(player.MissedMeTaunt());
+                // Display the player's defense taunt
+                // in the selected language (Message #58).
+                Console.WriteLine(_messages.FormatMessage(
+                    58, "playerName", player.name));
                 return;
             }
 
@@ -162,7 +164,7 @@ namespace cidm4390_cyoa_team1
                 return;
             }
 
-            // Random sarcastic dragon reply (44–47).
+            // Random sarcastic dragon reply (44-47).
             int replyId = die.Roll(4) + 43;
             Console.WriteLine(_messages.GetMessage(replyId));
         }

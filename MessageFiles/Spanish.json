@@ -75,5 +75,6 @@
   "54": "Ocupación no válida. Inténtalo de nuevo.",
   "55": "Escribe 'tirar' para continuar.",
   "56": "Opción no válida. Escribe 1 o 2.",
-  "57": "Opción no válida. Escribe 'n', 's' o 'e'."
+  "57": "Opción no válida. Escribe 'n', 's' o 'e'.",
+  "58": "¡{playerName} dice: No lograste golpearme!"
 }

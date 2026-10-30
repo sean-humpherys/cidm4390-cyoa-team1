@@ -33,7 +33,8 @@ public class AdventureTests
                 ["25"] = "Enter r for retreat and a for attack.",
                 ["26"] = "You hastily retreat licking your wounds.",
                 ["41"] = "You quickly retreat. You come home poor but alive. The End.",
-                ["57"] = "Invalid choice. Enter 'n', 's', or 'e'."
+                ["57"] = "Invalid choice. Enter 'n', 's', or 'e'.",
+                ["58"] = "{playerName} says: You missed me!"
             }
         };
     }
