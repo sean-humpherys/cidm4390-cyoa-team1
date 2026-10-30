@@ -70,7 +70,7 @@ public class Adventure
         }
 
         Console.WriteLine(_messages.GetMessage(11));
-        Console.WriteLine(dragon.DisplayStats());
+        Console.WriteLine(dragon.DisplayStats(_messages.CurrentLanguage));
 
         while (true)
         {
@@ -122,10 +122,17 @@ public class Adventure
 
             if (defenseRoll <= dragon.agility)
             {
+                //Random Dragon Defense Taunt
                 Console.WriteLine(
                     _messages.FormatMessage(
                         22, "dragonName", dragon.name));
-                Console.WriteLine(dragon.MissedMeTaunt());
+                
+                int tauntId = Random.Shared.Next(48, 52);
+
+                Console.WriteLine(
+                    _messages.FormatMessage(
+                        tauntId, "race", TranslateRace(player.race)
+                    ));
             }
             else
             {
@@ -148,6 +155,11 @@ public class Adventure
                     Console.WriteLine(_messages.GetMessage(42));
                     return true;
                 }
+
+                // Dragon Sarcastic Reply (44-47)
+                // Dragon takes damage but is still alive
+                int replyId = Random.Shared.Next(44, 48);
+                Console.WriteLine(_messages.GetMessage(replyId));
             }
         }
         else
@@ -155,7 +167,13 @@ public class Adventure
             Console.WriteLine(
                 _messages.FormatMessage(
                     35, "dragonName", dragon.name));
-            Console.WriteLine(_messages.GetMessage(48));
+
+            int tauntId = Random.Shared.Next(48, 52);
+
+            Console.WriteLine(
+                _messages.FormatMessage(
+                    tauntId, "race", TranslateRace(player.race)
+            ));
         }
 
         if (dragon.health > 0)
@@ -200,7 +218,6 @@ public class Adventure
             else
             {
                 Console.WriteLine(_messages.GetMessage(37));
-                Console.WriteLine(_messages.GetMessage(51));
             }
         }
 
@@ -252,6 +269,31 @@ public class Adventure
                 _ => weapon
             },
             _ => weapon
+        };
+    }
+
+    //Translate Races
+    private string TranslateRace(Race race)
+    {
+        return _messages.CurrentLanguage switch
+        {
+            Language.Spanish => race switch
+            {
+                Race.Human => "Humano",
+                Race.Elf => "Elfo",
+                Race.Dwarf => "Enano",
+                Race.Halfling => "Mediano",
+                _ => race.ToString()
+            },
+            Language.French => race switch
+            {
+                Race.Human => "Humain",
+                Race.Elf => "Elfe",
+                Race.Dwarf => "Nain",
+                Race.Halfling => "Halfelin",
+                _ => race.ToString()
+            },
+            _ => race.ToString()
         };
     }
 }
