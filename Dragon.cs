@@ -1,4 +1,6 @@
 
+using CYOA;
+
 namespace cidm4390_cyoa_team1
 {
     public class Dragon
@@ -32,13 +34,55 @@ namespace cidm4390_cyoa_team1
             return $"{name} growls: You'll regret that!";
         }
 
-        public string DisplayStats()
+        public string DisplayStats(Language language = Language.English)
         {
-            return $"Dragon: {name}\n" +
-                   $"Strength: {strength}\n" +
-                   $"Health: {health}\n" +
-                   $"Agility: {agility}\n" +
-                   $"Weapon: {weapon.type}";
+            string dragonLabel = language switch
+            {
+                Language.Spanish => "Dragón",
+                Language.French => "Dragon",
+                _ =>"Dragon"
+            };
+
+            string strengthLabel = language switch
+            {
+                Language.Spanish => "Fuerza",
+                Language.French => "Force",
+        _       => "Strength"
+            };
+
+            string healthLabel = language switch
+            {
+                Language.Spanish => "Puntos de salud",
+                Language.French => "Points de vie",
+                _ => "Health"
+            };
+
+            string agilityLabel = language switch
+            {
+                Language.Spanish => "Agilidad",
+                Language.French => "Agilité",
+                _ => "Agility"
+            };
+
+            string weaponLabel = language switch
+            {
+                Language.Spanish => "Arma",
+                Language.French => "Arme",
+                _ => "Weapon"
+            };
+
+            string weaponName = language switch
+            {
+                Language.Spanish => "garras",
+                Language.French => "griffes",
+                _ => weapon.type
+            };
+
+            return $"{dragonLabel}: {name}\n" +
+                   $"{strengthLabel}: {strength}\n" +
+                   $"{healthLabel}: {health}\n" +
+                   $"{agilityLabel}: {agility}\n" +
+                   $"{weaponLabel}: {weaponName}";
         }
     }
 }

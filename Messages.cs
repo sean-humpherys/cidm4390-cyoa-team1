@@ -60,4 +60,13 @@ public string FormatMessage(int whichMessage, Dictionary<string, string> replace
 
         return message;
     }
+
+// Randomizer for dragon taunts and sarcastic replies
+private static readonly Random _random = new Random();
+
+public string GetRandomMessage(int firstId, int lastId)
+    {
+        int messageId = _random.Next(firstId, lastId + 1);
+        return GetMessage(messageId);
+    }
 }
