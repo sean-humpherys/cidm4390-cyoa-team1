@@ -80,7 +80,7 @@ public class CharacterCreation
                 return name;
             }
 
-            Console.WriteLine("Character name cannot be empty.");
+            Console.WriteLine(_messages.GetMessage(53));
         }
     }
 
@@ -152,7 +152,7 @@ public class CharacterCreation
                 return _roll(sides);
             }
 
-            Console.WriteLine("Please type 'roll' to continue.");
+            Console.WriteLine(_messages.GetMessage(55));
         }
     }
 
@@ -213,8 +213,7 @@ public class CharacterCreation
                     return;
 
                 default:
-                    Console.WriteLine(
-                        "Invalid choice. Please enter 1 or 2.");
+                    Console.WriteLine(_messages.GetMessage(56));
                     break;
             }
         }
