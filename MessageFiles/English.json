@@ -74,5 +74,6 @@
   "54": "Invalid occupation. Please try again.",
   "55": "Please type 'roll' to continue.",
   "56": "Invalid choice. Please enter 1 or 2.",
-  "57": "Invalid choice. Enter 'n', 's', or 'e'."
+  "57": "Invalid choice. Enter 'n', 's', or 'e'.",
+  "58": "{playerName} says: You missed me!"
 }
