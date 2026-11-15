@@ -2,6 +2,8 @@ namespace cidm4390_cyoa_team1
 {
     public class Player
     {
+        public int armorProtection { get; set; } = 0;
+        public bool merchantGiftClaimed { get; set; } = false;
         public string name { get; set; }
         public Race race { get; set; }
         public Occupation occupation { get; set; }

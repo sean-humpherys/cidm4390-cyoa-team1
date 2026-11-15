@@ -76,5 +76,13 @@
   "55": "Veuillez taper 'lancer' pour continuer.",
   "56": "Choix invalide. Veuillez saisir 1 ou 2.",
   "57": "Choix invalide. Saisissez 'n', 's' ou 'e'.",
-  "58": "{playerName} dit : Tu m'as raté !"
+  "58": "{playerName} dit : Tu m'as raté !",
+  "_SECTION_11": "MERCHANT",
+  "59": "Tu voyages vers le sud et rencontres un marchand.",
+  "60": "Le marchand offre un cadeau gratuit par joueur et par partie. 1 = armure magique : réduit de 2 les dégâts de chaque coup ennemi réussi et non paré, avec un minimum de 0. 2 = arme magique : enchante ton arme actuelle avec +4 aux dégâts maximums (les dégâts minimums et la force restent identiques). 3 = partir.",
+  "61": "Ton arme actuelle est enchantée ! Ses dégâts maximums augmentent de 4. Tu as reçu ton cadeau gratuit.",
+  "62": "Tu quittes le marchand. Ton cadeau reste disponible si tu ne l’as pas encore reçu.",
+  "63": "Choix invalide. Entre 1, 2 ou 3.",
+  "64": "Tu as déjà reçu ton cadeau gratuit du marchand.",
+  "65": "Tu reçois une armure magique ! Chaque coup ennemi réussi et non paré inflige 2 dégâts de moins, avec un minimum de 0. Tu as reçu ton cadeau gratuit."
 }

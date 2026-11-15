@@ -31,8 +31,7 @@ public class Adventure
                     break;
 
                 case "s":
-                    Console.WriteLine(_messages.GetMessage(8));
-                    finished = true;
+                    new Merchant(_messages).Encounter(player);
                     break;
 
                 case "e":

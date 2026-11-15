@@ -76,5 +76,13 @@
   "55": "Escribe 'tirar' para continuar.",
   "56": "Opción no válida. Escribe 1 o 2.",
   "57": "Opción no válida. Escribe 'n', 's' o 'e'.",
-  "58": "¡{playerName} dice: No lograste golpearme!"
+  "58": "¡{playerName} dice: No lograste golpearme!",
+  "_SECTION_11": "MERCHANT",
+  "59": "Viajas al sur y encuentras a un mercader.",
+  "60": "El mercader ofrece un regalo gratis por jugador y por partida. 1 = armadura mágica: reduce en 2 el daño de cada golpe enemigo acertado y no defendido, hasta un mínimo de 0. 2 = arma mágica: encanta tu arma actual con +4 de daño máximo (el daño mínimo y la fuerza no cambian). 3 = salir.",
+  "61": "¡Tu arma actual está encantada! Su daño máximo aumenta en 4. Has recibido tu regalo gratis.",
+  "62": "Te despides del mercader. Tu regalo sigue disponible si aún no lo has recibido.",
+  "63": "Opción no válida. Introduce 1, 2 o 3.",
+  "64": "Ya has recibido tu regalo gratis del mercader.",
+  "65": "¡Recibes una armadura mágica! Cada golpe enemigo acertado y no defendido causa 2 puntos menos de daño, hasta un mínimo de 0. Has recibido tu regalo gratis."
 }
