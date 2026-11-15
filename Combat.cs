@@ -12,6 +12,7 @@ namespace cidm4390_cyoa_team1
         public Dragon dragon { get; set; }
 
         private readonly Messages _messages;
+        private readonly Func<int, int> _roll;
 
         // Constructor required by the UML diagram.
         public Combat(Player player, Dragon dragon)
@@ -21,7 +22,13 @@ namespace cidm4390_cyoa_team1
 
         // Constructor for integration with the Game class.
         public Combat(Player player, Dragon dragon, Messages messages)
+            : this(player, dragon, messages, new Die().Roll)
         {
+        }
+
+        public Combat(Player player, Dragon dragon, Messages messages, Func<int, int> roll)
+        {
+            _roll = roll ?? throw new ArgumentNullException(nameof(roll));
             this.player = player ??
                 throw new ArgumentNullException(nameof(player));
 
@@ -65,7 +72,7 @@ namespace cidm4390_cyoa_team1
             Console.WriteLine(player.weapon.asciiArt);
 
             // Roll a 20-sided die to determine whether the player hits.
-            int attackRoll = die.Roll(20);
+            int attackRoll = _roll(20);
 
             if (attackRoll > player.strength)
             {
@@ -78,7 +85,7 @@ namespace cidm4390_cyoa_team1
                 21, "dragonName", dragon.name));
 
             // The dragon rolls a 20-sided die to defend.
-            int defenseRoll = die.Roll(20);
+            int defenseRoll = _roll(20);
 
             if (defenseRoll <= dragon.agility)
             {
@@ -86,7 +93,7 @@ namespace cidm4390_cyoa_team1
                     22, "dragonName", dragon.name));
 
                 // Random dragon defense taunt (48-51).
-                int tauntId = die.Roll(4) + 47;
+                int tauntId = _roll(4) + 47;
 
                 Console.WriteLine(_messages.FormatMessage(
                     tauntId, "race", translator.TranslateRace(player.race)));
@@ -94,7 +101,7 @@ namespace cidm4390_cyoa_team1
             }
 
             // The dragon failed to defend.
-            int damage = die.Roll(player.weapon.maxDamage);
+            int damage = _roll(player.weapon.maxDamage);
             dragon.health -= damage;
 
             Console.WriteLine(_messages.FormatMessage(
@@ -112,16 +119,15 @@ namespace cidm4390_cyoa_team1
             }
 
             // Random dragon reply after surviving damage (44-47).
-            int replyId = die.Roll(4) + 43;
+            int replyId = _roll(4) + 43;
             Console.WriteLine(_messages.GetMessage(replyId));
         }
 
         public void DragonAttacksPlayerSequence()
         {
-            Die die = new Die();
 
             // Roll a 20-sided die for the dragon's attack.
-            int attackRoll = die.Roll(20);
+            int attackRoll = _roll(20);
 
             if (attackRoll > dragon.strength)
             {
@@ -133,7 +139,7 @@ namespace cidm4390_cyoa_team1
                 36, "dragonName", dragon.name));
 
             // Roll a 20-sided die for the player's defense.
-            int defenseRoll = die.Roll(20);
+            int defenseRoll = _roll(20);
 
             if (defenseRoll <= player.agility)
             {
@@ -147,7 +153,7 @@ namespace cidm4390_cyoa_team1
             }
 
             // The player failed to defend.
-            int damage = die.Roll(dragon.weapon.maxDamage);
+            int damage = Math.Max(0, _roll(dragon.weapon.maxDamage) - player.armorProtection);
             player.health -= damage;
 
             Console.WriteLine(_messages.FormatMessage(
@@ -165,7 +171,7 @@ namespace cidm4390_cyoa_team1
             }
 
             // Random sarcastic dragon reply (44-47).
-            int replyId = die.Roll(4) + 43;
+            int replyId = _roll(4) + 43;
             Console.WriteLine(_messages.GetMessage(replyId));
         }
     }

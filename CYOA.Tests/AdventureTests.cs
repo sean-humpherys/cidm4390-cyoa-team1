@@ -20,7 +20,9 @@ public class AdventureTests
             {
                 ["4"] = "Adventure ends. Bye.",
                 ["7"] = "You are in the mountains. Enter n, s, or e.",
-                ["8"] = "You take the South path. You return home bored.",
+                ["59"] = "You take the South path. You meet a merchant.",
+                ["60"] = "2 = magical weapon, 3 = leave",
+                ["62"] = "You leave the merchant.",
                 ["9"] = "You take the North path. You encounter a dragon.",
                 ["10"] = "The dragon says: I am {dragonName}. Leave or perish!",
                 ["11"] = "Your magic ring gives you the stats on the dragon.",
@@ -54,7 +56,7 @@ public class AdventureTests
 
         try
         {
-            Console.SetIn(new StringReader("s\n"));
+            Console.SetIn(new StringReader("s\n3\ne\n"));
             Console.SetOut(output);
 
             Adventure adventure = new Adventure(CreateMessages());
@@ -66,7 +68,7 @@ public class AdventureTests
 
             StringAssert.Contains(
                 output.ToString(),
-                "You return home bored.");
+                "You leave the merchant.");
         }
         finally
         {
@@ -198,7 +200,7 @@ public class AdventureTests
 
         try
         {
-            Console.SetIn(new StringReader("x\ns\n"));
+            Console.SetIn(new StringReader("x\ns\n3\ne\n"));
             Console.SetOut(output);
 
             Adventure adventure = new Adventure(CreateMessages());

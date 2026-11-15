@@ -75,5 +75,13 @@
   "55": "Please type 'roll' to continue.",
   "56": "Invalid choice. Please enter 1 or 2.",
   "57": "Invalid choice. Enter 'n', 's', or 'e'.",
-  "58": "{playerName} says: You missed me!"
+  "58": "{playerName} says: You missed me!",
+  "_SECTION_11": "MERCHANT",
+  "59": "You travel south and meet a merchant.",
+  "60": "The merchant offers one free gift per player per game. 1 = magical armor: reduces each successful, undefended enemy hit by 2 damage, to a minimum of 0. 2 = magical weapon: enchant your current weapon for +4 maximum damage (minimum damage and strength stay the same). 3 = leave.",
+  "61": "Your current weapon is enchanted! Its maximum damage increases by 4. You have received your free gift.",
+  "62": "You leave the merchant. Your gift is still available if you have not claimed it.",
+  "63": "Invalid choice. Enter 1, 2, or 3.",
+  "64": "You have already received your free gift from the merchant.",
+  "65": "You receive magical armor! Each successful, undefended enemy hit deals 2 less damage, to a minimum of 0. You have received your free gift."
 }
