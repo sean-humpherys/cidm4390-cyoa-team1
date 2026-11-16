@@ -13,7 +13,7 @@
   "9": "You take the North path. After walking for hours, the air grows colder, and the trees become more sparse. You are confronted with a dragon. The dragon has a hoard of gold behind it.",
   "10": "The dragon says 'I am {dragonName}. Leave or perish!'",
   "11": "Your magic ring gives you the stats on the dragon.",
-  "12": "Do you wish to retreat or attack? Enter 'r' for retreat. Enter 'a' for attack.",
+  "12": "Do you wish to retreat or attack? Enter 'r' for retreat. Enter 'a' for attack. Enter 'p' to drink a healing potion.",
   
   "_SECTION_3": "CREATE CHARACTER ACTIVITY",
   "13": "What race of character do you want to be? Human, Elf, Dwarf or Halfling?",
@@ -30,7 +30,7 @@
   "22": "{dragonName} successfully defends your attack.",
   "23": "The dragon failed to defend your attack. Your weapon delivers {damage} damage points. The dragon's health points is now {healthPoints}.",
   "24": "With the last words of 'Arggg!', you have defeated the dragon.",
-  "25": "Enter 'r' for retreat and 'a' for attack.",
+  "25": "Enter 'a' to attack, 'p' to drink a healing potion, or 'r' to retreat.",
   "26": "You hastily retreat licking your wounds.",
   
   "_SECTION_5": "CHARACTER SUMMARY LABELS",
@@ -83,5 +83,9 @@
   "62": "You leave the merchant. Your gift is still available if you have not claimed it.",
   "63": "Invalid choice. Enter 1, 2, or 3.",
   "64": "You have already received your free gift from the merchant.",
-  "65": "You receive magical armor! Each successful, undefended enemy hit deals 2 less damage, to a minimum of 0. You have received your free gift."
+  "65": "You receive magical armor! Each successful, undefended enemy hit deals 2 less damage, to a minimum of 0. You have received your free gift.",
+  "66": "Health: {health}/{maxHealth} | Healing potions: {potions}",
+  "67": "You recover {restored} health points. Health: {health}/{maxHealth}. Healing potions: {potions}.",
+  "68": "You are already at full health.",
+  "69": "You have no healing potions left."
 }

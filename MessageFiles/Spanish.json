@@ -13,7 +13,7 @@
   "9": "Tomas el camino del norte. Después de caminar durante horas, el aire se vuelve más frío y los árboles comienzan a escasear. Te encuentras con un dragón que protege un tesoro de oro.",
   "10": "El dragón dice: 'Soy {dragonName}. ¡Vete o morirás!'",
   "11": "Tu anillo mágico te muestra las estadísticas del dragón.",
-  "12": "¿Quieres retirarte o atacar? Escribe 'r' para retirarte o 'a' para atacar.",
+  "12": "¿Quieres retirarte o atacar? Escribe 'r' para retirarte o 'a' para atacar. Escribe 'p' para beber una poción curativa.",
 
   "_SECTION_3": "CREATE CHARACTER ACTIVITY",
   "13": "¿Qué raza quieres que sea tu personaje? ¿Humano, elfo, enano o mediano?",
@@ -30,7 +30,7 @@
   "22": "{dragonName} defiende tu ataque con éxito.",
   "23": "El dragón no logra defenderse de tu ataque. Tu arma causa {damage} puntos de daño. Los puntos de salud del dragón ahora son {healthPoints}.",
   "24": "Con sus últimas palabras, '¡Arggg!', has derrotado al dragón.",
-  "25": "Escribe 'r' para retirarte o 'a' para atacar.",
+  "25": "Escribe 'a' para atacar, 'p' para beber una poción curativa o 'r' para retirarte.",
   "26": "Te retiras apresuradamente, mientras te recuperas de tus heridas.",
 
   "_SECTION_5": "CHARACTER SUMMARY LABELS",
@@ -84,5 +84,9 @@
   "62": "Te despides del mercader. Tu regalo sigue disponible si aún no lo has recibido.",
   "63": "Opción no válida. Introduce 1, 2 o 3.",
   "64": "Ya has recibido tu regalo gratis del mercader.",
-  "65": "¡Recibes una armadura mágica! Cada golpe enemigo acertado y no defendido causa 2 puntos menos de daño, hasta un mínimo de 0. Has recibido tu regalo gratis."
+  "65": "¡Recibes una armadura mágica! Cada golpe enemigo acertado y no defendido causa 2 puntos menos de daño, hasta un mínimo de 0. Has recibido tu regalo gratis.",
+  "66": "Salud: {health}/{maxHealth} | Pociones curativas: {potions}",
+  "67": "Recuperas {restored} puntos de salud. Salud: {health}/{maxHealth}. Pociones curativas: {potions}.",
+  "68": "Ya tienes la salud al máximo.",
+  "69": "No te quedan pociones curativas."
 }

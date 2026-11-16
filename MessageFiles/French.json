@@ -13,7 +13,7 @@
   "9": "Vous prenez le chemin du nord. Après plusieurs heures de marche, l'air devient plus froid et les arbres se font plus rares. Vous rencontrez un dragon qui garde un trésor d'or.",
   "10": "Le dragon dit : 'Je suis {dragonName}. Partez ou périssez !'",
   "11": "Votre anneau magique vous révèle les caractéristiques du dragon.",
-  "12": "Souhaitez-vous battre en retraite ou attaquer ? Tapez 'r' pour battre en retraite ou 'a' pour attaquer.",
+  "12": "Souhaitez-vous battre en retraite ou attaquer ? Tapez 'r' pour battre en retraite ou 'a' pour attaquer. Tapez 'p' pour boire une potion de soins.",
 
   "_SECTION_3": "CREATE CHARACTER ACTIVITY",
   "13": "Quelle race souhaitez-vous pour votre personnage ? Humain, elfe, nain ou halfelin ?",
@@ -30,7 +30,7 @@
   "22": "{dragonName} réussit à parer votre attaque.",
   "23": "Le dragon ne parvient pas à parer votre attaque. Votre arme inflige {damage} points de dégâts. Le dragon possède maintenant {healthPoints} points de vie.",
   "24": "Dans un dernier cri, 'Arggg !', le dragon succombe. Vous l'avez vaincu.",
-  "25": "Tapez 'r' pour battre en retraite ou 'a' pour attaquer.",
+  "25": "Tapez 'a' pour attaquer, 'p' pour boire une potion de soins ou 'r' pour battre en retraite.",
   "26": "Vous battez précipitamment en retraite, en pansant vos blessures.",
 
   "_SECTION_5": "CHARACTER SUMMARY LABELS",
@@ -84,5 +84,9 @@
   "62": "Tu quittes le marchand. Ton cadeau reste disponible si tu ne l’as pas encore reçu.",
   "63": "Choix invalide. Entre 1, 2 ou 3.",
   "64": "Tu as déjà reçu ton cadeau gratuit du marchand.",
-  "65": "Tu reçois une armure magique ! Chaque coup ennemi réussi et non paré inflige 2 dégâts de moins, avec un minimum de 0. Tu as reçu ton cadeau gratuit."
+  "65": "Tu reçois une armure magique ! Chaque coup ennemi réussi et non paré inflige 2 dégâts de moins, avec un minimum de 0. Tu as reçu ton cadeau gratuit.",
+  "66": "Santé : {health}/{maxHealth} | Potions de soins : {potions}",
+  "67": "Tu récupères {restored} points de santé. Santé : {health}/{maxHealth}. Potions de soins : {potions}.",
+  "68": "Ta santé est déjà au maximum.",
+  "69": "Tu n'as plus de potions de soins."
 }

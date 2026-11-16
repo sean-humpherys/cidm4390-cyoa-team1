@@ -7,10 +7,18 @@ namespace CYOA;
 public class Adventure
 {
     private readonly Messages _messages;
+    private readonly Func<int, int> _roll;
 
     public Adventure(Messages messages)
+        : this(messages, new Die().Roll)
+    {
+    }
+
+    // Allows controlled combat rolls while ordinary gameplay keeps using Die.
+    public Adventure(Messages messages, Func<int, int> roll)
     {
         _messages = messages;
+        _roll = roll ?? throw new ArgumentNullException(nameof(roll));
     }
 
     public void StartAdventure(Player player)
@@ -70,6 +78,20 @@ public class Adventure
 
         while (true)
         {
+            if (player.health <= 0)
+            {
+                Console.WriteLine(_messages.GetMessage(43));
+                return true;
+            }
+
+            Console.WriteLine(_messages.FormatMessage(
+                66,
+                new Dictionary<string, string>
+                {
+                    { "health", player.health.ToString() },
+                    { "maxHealth", player.maxHealth.ToString() },
+                    { "potions", player.healingPotions.ToString() }
+                }));
             Console.WriteLine(_messages.GetMessage(12));
 
             string? choice =
@@ -81,8 +103,34 @@ public class Adventure
                     Console.WriteLine(_messages.GetMessage(41));
                     return true;
 
+                case "p":
+                    if (player.healingPotions <= 0)
+                    {
+                        Console.WriteLine(_messages.GetMessage(69));
+                        break;
+                    }
+                    if (player.health >= player.maxHealth)
+                    {
+                        Console.WriteLine(_messages.GetMessage(68));
+                        break;
+                    }
+                    int restored = Math.Min(10, player.maxHealth - player.health);
+                    player.health += restored;
+                    player.healingPotions--;
+                    Console.WriteLine(_messages.FormatMessage(
+                        67,
+                        new Dictionary<string, string>
+                        {
+                            { "restored", restored.ToString() },
+                            { "health", player.health.ToString() },
+                            { "maxHealth", player.maxHealth.ToString() },
+                            { "potions", player.healingPotions.ToString() }
+                        }));
+                    new Combat(player, dragon, _messages, _roll).DragonAttacksPlayerSequence();
+                    break;
+
                 case "a":
-                    Combat combat = new Combat(player, dragon, _messages);
+                    Combat combat = new Combat(player, dragon, _messages, _roll);
                     if (Fight(player, dragon, combat))
                         return true;
                     break;

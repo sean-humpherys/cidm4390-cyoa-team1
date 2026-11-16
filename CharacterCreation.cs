@@ -195,7 +195,7 @@ public class CharacterCreation
             baseHealth += strengthModifier;
         }
 
-        player.health = baseHealth;
+        player.SetStartingHealth(baseHealth);
     }
 
     private void ShowCharacterMenu(Player player)

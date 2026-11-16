@@ -59,7 +59,7 @@ public class MessagesTests
 
         messages.ReadDictionary(GetLanguagePath("English"));
 
-        Assert.HasCount(65, messages.LanguageDictionary);
+        Assert.HasCount(69, messages.LanguageDictionary);
         Assert.IsFalse(
             messages.LanguageDictionary.ContainsKey("_SECTION_1"));
         Assert.IsFalse(
@@ -106,16 +106,16 @@ public class MessagesTests
         Assert.DoesNotContain("{healthPoints}", result);
     }
 
-    // Verify Spanish contains all 65 messages.
+    // Verify Spanish contains all 69 messages.
     [TestMethod]
     public void ReadDictionary_SpanishHasAllMessages()
     {
         Messages messages = new Messages();
         messages.ReadDictionary(GetLanguagePath("Spanish"));
 
-        Assert.HasCount(65, messages.LanguageDictionary);
+        Assert.HasCount(69, messages.LanguageDictionary);
 
-        for (int i = 1; i <= 65; i++)
+        for (int i = 1; i <= 69; i++)
         {
             Assert.IsTrue(
                 messages.LanguageDictionary.ContainsKey(i.ToString()),
@@ -123,16 +123,16 @@ public class MessagesTests
         }
     }
 
-    // Verify French contains all 65 messages.
+    // Verify French contains all 69 messages.
     [TestMethod]
     public void ReadDictionary_FrenchHasAllMessages()
     {
         Messages messages = new Messages();
         messages.ReadDictionary(GetLanguagePath("French"));
 
-        Assert.HasCount(65, messages.LanguageDictionary);
+        Assert.HasCount(69, messages.LanguageDictionary);
 
-        for (int i = 1; i <= 65; i++)
+        for (int i = 1; i <= 69; i++)
         {
             Assert.IsTrue(
                 messages.LanguageDictionary.ContainsKey(i.ToString()),
