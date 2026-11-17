@@ -8,12 +8,12 @@
   "4": "Adventure ends. Bye.",
   "5": "Welcome to Choose Your Adventure Game",
   "6": "Choose: 1. Create Character or 2. Exit. Type '1' or '2'",
-  "7": "You are walking in the mountains. You see two paths, one leading north and higher into the mountains. The other path leads south and into the woods. Enter 'n' for North. Enter 's' for South. Enter 'e' for exit game.",
+  "7": "You are walking in the mountains. You see two paths, one leading north and higher into the mountains. The other path leads south and into the woods. Enter 'n' for North. Enter 's' for South. Enter 'e' for exit game. Enter 'i' to view inventory.",
   "8": "You take the South path. After many long days, nothing adventurous happens. You are bored and return home, poor, and still bored.",
   "9": "You take the North path. After walking for hours, the air grows colder, and the trees become more sparse. You are confronted with a dragon. The dragon has a hoard of gold behind it.",
   "10": "The dragon says 'I am {dragonName}. Leave or perish!'",
   "11": "Your magic ring gives you the stats on the dragon.",
-  "12": "Do you wish to retreat or attack? Enter 'r' for retreat. Enter 'a' for attack.",
+  "12": "Do you wish to retreat or attack? Enter 'r' for retreat. Enter 'a' for attack. Enter 'p' to drink a healing potion.",
   
   "_SECTION_3": "CREATE CHARACTER ACTIVITY",
   "13": "What race of character do you want to be? Human, Elf, Dwarf or Halfling?",
@@ -30,7 +30,7 @@
   "22": "{dragonName} successfully defends your attack.",
   "23": "The dragon failed to defend your attack. Your weapon delivers {damage} damage points. The dragon's health points is now {healthPoints}.",
   "24": "With the last words of 'Arggg!', you have defeated the dragon.",
-  "25": "Enter 'r' for retreat and 'a' for attack.",
+  "25": "Enter 'a' to attack, 'p' to drink a healing potion, or 'r' to retreat.",
   "26": "You hastily retreat licking your wounds.",
   
   "_SECTION_5": "CHARACTER SUMMARY LABELS",
@@ -74,7 +74,7 @@
   "54": "Invalid occupation. Please try again.",
   "55": "Please type 'roll' to continue.",
   "56": "Invalid choice. Please enter 1 or 2.",
-  "57": "Invalid choice. Enter 'n', 's', or 'e'.",
+  "57": "Invalid choice. Enter 'n', 's', 'i', or 'e'.",
   "58": "{playerName} says: You missed me!",
   "_SECTION_11": "MERCHANT",
   "59": "You travel south and meet a merchant.",
@@ -83,5 +83,13 @@
   "62": "You leave the merchant. Your gift is still available if you have not claimed it.",
   "63": "Invalid choice. Enter 1, 2, or 3.",
   "64": "You have already received your free gift from the merchant.",
-  "65": "You receive magical armor! Each successful, undefended enemy hit deals 2 less damage, to a minimum of 0. You have received your free gift."
+  "65": "You receive magical armor! Each successful, undefended enemy hit deals 2 less damage, to a minimum of 0. You have received your free gift.",
+  "66": "Health: {health}/{maxHealth} | Healing potions: {potions}",
+  "67": "You recover {restored} health points. Health: {health}/{maxHealth}. Healing potions: {potions}.",
+  "68": "You are already at full health.",
+  "69": "You have no healing potions left.",
+  "70": "Weapon: {weapon}",
+  "71": "Weapon maximum damage: {damage}",
+  "72": "Armor protection: {protection}",
+  "73": "Healing potions remaining: {potions}"
 }

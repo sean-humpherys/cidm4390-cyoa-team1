@@ -26,6 +26,7 @@ public class AdventureTests
                 ["9"] = "You take the North path. You encounter a dragon.",
                 ["10"] = "The dragon says: I am {dragonName}. Leave or perish!",
                 ["11"] = "Your magic ring gives you the stats on the dragon.",
+                ["66"] = "Health: {health}/{maxHealth} | Healing potions: {potions}",
                 ["12"] = "Enter r to retreat or a to attack.",
                 ["20"] = "{occupation} attacks using {weapon}.",
                 ["35"] = "Your attack misses {dragonName}.",

@@ -2,6 +2,8 @@ namespace cidm4390_cyoa_team1
 {
     public class Player
     {
+        public int maxHealth { get; private set; }
+        public int healingPotions { get; set; } = 1;
         public int armorProtection { get; set; } = 0;
         public bool merchantGiftClaimed { get; set; } = false;
         public string name { get; set; }
@@ -18,7 +20,7 @@ namespace cidm4390_cyoa_team1
             occupation = Occupation.Fighter;
             strength = 10;
             agility = 10;
-            health = 20;
+            SetStartingHealth(20);
             weapon = new Weapon("long sword", 12, "====>");
         }
         public Player(string name, Race race, Occupation occupation)
@@ -28,9 +30,16 @@ namespace cidm4390_cyoa_team1
             this.occupation = occupation;
             strength = 10;
             agility = 10;
-            health = 20;
+            SetStartingHealth(20);
             weapon = new Weapon("long sword", 12, "====>");
         }
+        // Character creation finalizes both values after applying race bonuses.
+        internal void SetStartingHealth(int startingHealth)
+        {
+            health = startingHealth;
+            maxHealth = startingHealth;
+        }
+
         public string MissedMeTaunt()
         {
             return name + " says: You missed me!";

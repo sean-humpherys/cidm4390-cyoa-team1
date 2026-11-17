@@ -56,17 +56,13 @@ namespace cidm4390_cyoa_team1
 
         public void PlayerAttacksDragonSequence()
         {
-            Die die = new Die();
-
-            CharacterCreation translator = new CharacterCreation(_messages, die);
-
             // Display the attack introduction in the selected language.
             Console.WriteLine(_messages.FormatMessage(
                 20,
                 new Dictionary<string, string>
                 {
-                    { "occupation", translator.TranslateOccupation(player.occupation)},
-                    { "weapon", translator.TranslateWeapon(player.weapon.type)}
+                    { "occupation", _messages.TranslateOccupation(player.occupation)},
+                    { "weapon", _messages.TranslateWeapon(player.weapon.type)}
                 }));
 
             Console.WriteLine(player.weapon.asciiArt);
@@ -96,7 +92,7 @@ namespace cidm4390_cyoa_team1
                 int tauntId = _roll(4) + 47;
 
                 Console.WriteLine(_messages.FormatMessage(
-                    tauntId, "race", translator.TranslateRace(player.race)));
+                    tauntId, "race", _messages.TranslateRace(player.race)));
                 return;
             }
 

@@ -195,7 +195,7 @@ public class CharacterCreation
             baseHealth += strengthModifier;
         }
 
-        player.health = baseHealth;
+        player.SetStartingHealth(baseHealth);
     }
 
     private void ShowCharacterMenu(Player player)
@@ -221,77 +221,11 @@ public class CharacterCreation
         }
     }
 
-    public string TranslateRace(Race race)
-    {
-        return _messages.CurrentLanguage switch
-        {
-            Language.Spanish => race switch
-            {
-                Race.Human => "Humano",
-                Race.Elf => "Elfo",
-                Race.Dwarf => "Enano",
-                Race.Halfling => "Mediano",
-                _ => race.ToString()
-            },
-            Language.French => race switch
-            {
-                Race.Human => "Humain",
-                Race.Elf => "Elfe",
-                Race.Dwarf => "Nain",
-                Race.Halfling => "Halfelin",
-                _ => race.ToString()
-            },
-            _ => race.ToString()
-        };
-    }
+    public string TranslateRace(Race race) => _messages.TranslateRace(race);
 
-    public string TranslateOccupation(Occupation occupation)
-    {
-        return _messages.CurrentLanguage switch
-        {
-            Language.Spanish => occupation switch
-            {
-                Occupation.Fighter => "Guerrero",
-                Occupation.Magician => "Mago",
-                Occupation.Thief => "Ladrón",
-                Occupation.Archer => "Arquero",
-                _ => occupation.ToString()
-            },
-            Language.French => occupation switch
-            {
-                Occupation.Fighter => "Guerrier",
-                Occupation.Magician => "Magicien",
-                Occupation.Thief => "Voleur",
-                Occupation.Archer => "Archer",
-                _ => occupation.ToString()
-            },
-            _ => occupation.ToString()
-        };
-    }
+    public string TranslateOccupation(Occupation occupation) => _messages.TranslateOccupation(occupation);
 
-    public string TranslateWeapon(string weapon)
-    {
-        return _messages.CurrentLanguage switch
-        {
-            Language.Spanish => weapon switch
-            {
-                "long sword" => "espada larga",
-                "lightning bolt spell" => "hechizo de rayo",
-                "dagger" => "daga",
-                "long bow" => "arco largo",
-                _ => weapon
-            },
-            Language.French => weapon switch
-            {
-                "long sword" => "épée longue",
-                "lightning bolt spell" => "sort de foudre",
-                "dagger" => "dague",
-                "long bow" => "arc long",
-                _ => weapon
-            },
-            _ => weapon
-        };
-    }
+    public string TranslateWeapon(string weapon) => _messages.TranslateWeapon(weapon);
 
     public void DisplayCharacterStats(Player player)
     {
@@ -299,10 +233,10 @@ public class CharacterCreation
             $"{_messages.GetMessage(27)}: {player.name}");
 
         Console.WriteLine(
-            $"{_messages.GetMessage(28)}: {TranslateRace(player.race)}");
+            $"{_messages.GetMessage(28)}: {_messages.TranslateRace(player.race)}");
 
         Console.WriteLine(
-            $"{_messages.GetMessage(29)}: {TranslateOccupation(player.occupation)}");
+            $"{_messages.GetMessage(29)}: {_messages.TranslateOccupation(player.occupation)}");
 
         Console.WriteLine(
             $"{_messages.GetMessage(30)}: {player.strength}");
@@ -314,7 +248,7 @@ public class CharacterCreation
             $"{_messages.GetMessage(32)}: {player.health}");
 
         Console.WriteLine(
-            $"{_messages.GetMessage(33)}: {TranslateWeapon(player.weapon.type)}");
+            $"{_messages.GetMessage(33)}: {_messages.TranslateWeapon(player.weapon.type)}");
 
         Console.WriteLine(
             $"{_messages.GetMessage(34)}: {player.weapon.maxDamage}");

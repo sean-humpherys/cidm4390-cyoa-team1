@@ -8,12 +8,12 @@
   "4": "L'aventure se termine. Au revoir.",
   "5": "Bienvenue dans le jeu Choisissez votre aventure.",
   "6": "Choisissez : 1. Créer un personnage ou 2. Quitter. Tapez '1' ou '2'.",
-  "7": "Vous marchez dans les montagnes. Vous apercevez deux chemins : l'un mène vers le nord, plus haut dans les montagnes, et l'autre vers le sud, dans la forêt. Tapez 'n' pour le nord, 's' pour le sud ou 'e' pour quitter le jeu.",
+  "7": "Vous marchez dans les montagnes. Vous apercevez deux chemins : l'un mène vers le nord, plus haut dans les montagnes, et l'autre vers le sud, dans la forêt. Tapez 'n' pour le nord, 's' pour le sud ou 'e' pour quitter le jeu. Tapez 'i' pour afficher l’inventaire.",
   "8": "Vous prenez le chemin du sud. Après de longues journées, rien d'extraordinaire ne se passe. Vous vous ennuyez et rentrez chez vous, pauvre et toujours aussi ennuyé.",
   "9": "Vous prenez le chemin du nord. Après plusieurs heures de marche, l'air devient plus froid et les arbres se font plus rares. Vous rencontrez un dragon qui garde un trésor d'or.",
   "10": "Le dragon dit : 'Je suis {dragonName}. Partez ou périssez !'",
   "11": "Votre anneau magique vous révèle les caractéristiques du dragon.",
-  "12": "Souhaitez-vous battre en retraite ou attaquer ? Tapez 'r' pour battre en retraite ou 'a' pour attaquer.",
+  "12": "Souhaitez-vous battre en retraite ou attaquer ? Tapez 'r' pour battre en retraite ou 'a' pour attaquer. Tapez 'p' pour boire une potion de soins.",
 
   "_SECTION_3": "CREATE CHARACTER ACTIVITY",
   "13": "Quelle race souhaitez-vous pour votre personnage ? Humain, elfe, nain ou halfelin ?",
@@ -30,7 +30,7 @@
   "22": "{dragonName} réussit à parer votre attaque.",
   "23": "Le dragon ne parvient pas à parer votre attaque. Votre arme inflige {damage} points de dégâts. Le dragon possède maintenant {healthPoints} points de vie.",
   "24": "Dans un dernier cri, 'Arggg !', le dragon succombe. Vous l'avez vaincu.",
-  "25": "Tapez 'r' pour battre en retraite ou 'a' pour attaquer.",
+  "25": "Tapez 'a' pour attaquer, 'p' pour boire une potion de soins ou 'r' pour battre en retraite.",
   "26": "Vous battez précipitamment en retraite, en pansant vos blessures.",
 
   "_SECTION_5": "CHARACTER SUMMARY LABELS",
@@ -75,7 +75,7 @@
   "54": "Profession invalide. Veuillez réessayer.",
   "55": "Veuillez taper 'lancer' pour continuer.",
   "56": "Choix invalide. Veuillez saisir 1 ou 2.",
-  "57": "Choix invalide. Saisissez 'n', 's' ou 'e'.",
+  "57": "Choix invalide. Tapez 'n', 's', 'i' ou 'e'.",
   "58": "{playerName} dit : Tu m'as raté !",
   "_SECTION_11": "MERCHANT",
   "59": "Tu voyages vers le sud et rencontres un marchand.",
@@ -84,5 +84,13 @@
   "62": "Tu quittes le marchand. Ton cadeau reste disponible si tu ne l’as pas encore reçu.",
   "63": "Choix invalide. Entre 1, 2 ou 3.",
   "64": "Tu as déjà reçu ton cadeau gratuit du marchand.",
-  "65": "Tu reçois une armure magique ! Chaque coup ennemi réussi et non paré inflige 2 dégâts de moins, avec un minimum de 0. Tu as reçu ton cadeau gratuit."
+  "65": "Tu reçois une armure magique ! Chaque coup ennemi réussi et non paré inflige 2 dégâts de moins, avec un minimum de 0. Tu as reçu ton cadeau gratuit.",
+  "66": "Santé : {health}/{maxHealth} | Potions de soins : {potions}",
+  "67": "Tu récupères {restored} points de santé. Santé : {health}/{maxHealth}. Potions de soins : {potions}.",
+  "68": "Ta santé est déjà au maximum.",
+  "69": "Tu n'as plus de potions de soins.",
+  "70": "Arme : {weapon}",
+  "71": "Dégâts maximums de l’arme : {damage}",
+  "72": "Protection de l’armure : {protection}",
+  "73": "Potions de soins restantes : {potions}"
 }
