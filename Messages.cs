@@ -1,4 +1,5 @@
 using System.Text.Json;
+using cidm4390_cyoa_team1;
 
 namespace CYOA;
 
@@ -7,6 +8,77 @@ public class Messages
     public Language CurrentLanguage {get; set; }
     public Dictionary<string, string> LanguageDictionary {get; set; }
         =new Dictionary<string, string>();
+
+    public string TranslateRace(Race race)
+    {
+        return CurrentLanguage switch
+        {
+            Language.Spanish => race switch
+            {
+                Race.Halfling => "Mediano",
+                Race.Dwarf => "Enano",
+                Race.Elf => "Elfo",
+                Race.Human => "Humano",
+                _ => race.ToString()
+            },
+            Language.French => race switch
+            {
+                Race.Halfling => "Halfelin",
+                Race.Dwarf => "Nain",
+                Race.Elf => "Elfe",
+                Race.Human => "Humain",
+                _ => race.ToString()
+            },
+            _ => race.ToString()
+        };
+    }
+
+    public string TranslateOccupation(Occupation occupation)
+    {
+        return CurrentLanguage switch
+        {
+            Language.Spanish => occupation switch
+            {
+                Occupation.Archer => "Arquero",
+                Occupation.Thief => "Ladrón",
+                Occupation.Magician => "Mago",
+                Occupation.Fighter => "Guerrero",
+                _ => occupation.ToString()
+            },
+            Language.French => occupation switch
+            {
+                Occupation.Thief => "Voleur",
+                Occupation.Magician => "Magicien",
+                Occupation.Fighter => "Guerrier",
+                _ => occupation.ToString()
+            },
+            _ => occupation.ToString()
+        };
+    }
+
+    public string TranslateWeapon(string weapon)
+    {
+        return CurrentLanguage switch
+        {
+            Language.Spanish => weapon switch
+            {
+                "long bow" => "arco largo",
+                "dagger" => "daga",
+                "lightning bolt spell" => "hechizo de rayo",
+                "long sword" => "espada larga",
+                _ => weapon
+            },
+            Language.French => weapon switch
+            {
+                "long bow" => "arc long",
+                "dagger" => "dague",
+                "lightning bolt spell" => "sort de foudre",
+                "long sword" => "épée longue",
+                _ => weapon
+            },
+            _ => weapon
+        };
+    }
 
 public string GetMessage(int whichMessage)
     {

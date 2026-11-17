@@ -23,3 +23,7 @@ _Avoid_: Merchant gift, extra life
 **Maximum health**:
 The player's health immediately after character creation, including race bonuses. It remains fixed for that game and is the upper limit for healing.
 _Avoid_: Current health, extra health
+
+**Inventory**:
+A read-only summary of the equipment and healing potions carried by the player.
+_Avoid_: Equipment management, item management

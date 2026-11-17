@@ -8,7 +8,7 @@
   "4": "La aventura termina. Adiós.",
   "5": "Bienvenido al juego Elige tu propia aventura.",
   "6": "Elige: 1. Crear personaje o 2. Salir. Escribe '1' o '2'.",
-  "7": "Estás caminando por las montañas. Ves dos caminos: uno hacia el norte, que sube por las montañas, y otro hacia el sur, que conduce al bosque. Escribe 'n' para norte, 's' para sur o 'e' para salir del juego.",
+  "7": "Estás caminando por las montañas. Ves dos caminos: uno hacia el norte, que sube por las montañas, y otro hacia el sur, que conduce al bosque. Escribe 'n' para norte, 's' para sur o 'e' para salir del juego. Escribe 'i' para ver el inventario.",
   "8": "Tomas el camino del sur. Después de muchos días, no sucede nada emocionante. Aburrido, regresas a casa sin dinero.",
   "9": "Tomas el camino del norte. Después de caminar durante horas, el aire se vuelve más frío y los árboles comienzan a escasear. Te encuentras con un dragón que protege un tesoro de oro.",
   "10": "El dragón dice: 'Soy {dragonName}. ¡Vete o morirás!'",
@@ -75,7 +75,7 @@
   "54": "Ocupación no válida. Inténtalo de nuevo.",
   "55": "Escribe 'tirar' para continuar.",
   "56": "Opción no válida. Escribe 1 o 2.",
-  "57": "Opción no válida. Escribe 'n', 's' o 'e'.",
+  "57": "Opción no válida. Escribe 'n', 's', 'i' o 'e'.",
   "58": "¡{playerName} dice: No lograste golpearme!",
   "_SECTION_11": "MERCHANT",
   "59": "Viajas al sur y encuentras a un mercader.",
@@ -88,5 +88,9 @@
   "66": "Salud: {health}/{maxHealth} | Pociones curativas: {potions}",
   "67": "Recuperas {restored} puntos de salud. Salud: {health}/{maxHealth}. Pociones curativas: {potions}.",
   "68": "Ya tienes la salud al máximo.",
-  "69": "No te quedan pociones curativas."
+  "69": "No te quedan pociones curativas.",
+  "70": "Arma: {weapon}",
+  "71": "Daño máximo del arma: {damage}",
+  "72": "Protección de la armadura: {protection}",
+  "73": "Pociones curativas restantes: {potions}"
 }
